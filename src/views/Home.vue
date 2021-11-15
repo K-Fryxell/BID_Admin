@@ -1,15 +1,19 @@
 <template>
-  <hello-world />
+  <v-data-table
+    :headers="headers"
+    :items="desserts"
+    :items-per-page="5"
+    class="elevation-1"
+  ></v-data-table>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
 
   export default {
     name: 'Home',
 
     components: {
-      HelloWorld,
+      
     },
   }
 </script>
