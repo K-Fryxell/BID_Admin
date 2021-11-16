@@ -23,62 +23,41 @@
             <v-row>
                 <v-text-field
                 v-model="mailAddress"
-                :rules="mailAddress"
+                
                 hint="メールアドレス"
                 required>
                 </v-text-field>
             </v-row>
             <v-row>
                 <v-card-title>
-                    症状
+                    通報
                 </v-card-title>
             </v-row>
             <v-row>
                 <v-radio-group
-                v-model="radioGroup"
                 column>
                     <v-radio
-                        label="脈拍異常検知"
-                        value="heartRateAbnormal"
+                        label="警察"
+                        value="1"
+                        v-modele="abnormal"
                     ></v-radio>
                     <v-radio
-                        label="血圧異常検知"
-                        value="bloodPressureAbnormal"
-                    ></v-radio>
-                    <v-radio
-                        label="ドーパミン・セロトニン数値異常検知"
-                        value="crimeIndexAbnormal"
-                    ></v-radio>
-                </v-radio-group>
-            </v-row>
-            <v-row>
-                <v-card-title>
-                    深刻度
-                </v-card-title>
-            </v-row>
-            <v-row>
-                <v-radio-group
-                v-model="radioGroup"
-                column>
-                    <v-radio
-                        label="生活習慣で改善するレベル"
-                        value="mild"
-                    ></v-radio>
-                    <v-radio
-                        label="すぐに病院へ行くことを推奨するレベル"
-                        value="severe"
+                        label="救急車"
+                        value="0"
+                        v-modele="abnormal"
                     ></v-radio>
                 </v-radio-group>
             </v-row>
             <v-row justify="center" align="center" class="ma-0 pa-0 mt-2">
                 <v-btn
+                    @click="sendmail"
                     dark
                     style="background-color: grey"
                     outlined
                     rounded
                     class="mr-4 white--text mb-5"
                     width="120"
-                >
+                    >
                     送信
                 </v-btn>
             </v-row>
@@ -94,6 +73,9 @@ name: "Home",
 components: {},
 data() {
     return {
+        mailAddress: "",
+        abnromal: "",
+        detail: "",
     headers: [
         {
         text: "バイタル名",
@@ -353,6 +335,22 @@ data() {
         oclock24: "125",
         },
     ],
+    methods: {
+        sendmail() {
+            console.log("aiueo")
+                    this.axios.get('http://localhost:8000/mail/', {
+                        params: {
+                            recipient: this.mailAddress,
+                            abnormal: this.abnormal,
+                            detail: "0",
+                        }
+                    }).then(function (response) {
+                        console.log(response)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+                },
+    }
     };
 },
 };
