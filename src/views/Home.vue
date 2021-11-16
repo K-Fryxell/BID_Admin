@@ -4,9 +4,13 @@
             :headers="headers"
             :items="desserts"
             :items-per-page="10"
-            class="elevation-1"
         >
-            <template #item.action="{ item }">
+            <template v-slot:item.status="{ item }">
+                <div :class="item.color" style="margin:0; padding:0;">
+                    {{item.status}}
+                </div>
+            </template>
+            <template #item.actions="{ item }">
                 <v-btn @click="onClickShow(item)" to="/user_details">表示</v-btn>
             </template>
         </v-data-table>
@@ -14,11 +18,8 @@
 </template>
 
 <script>
-
 export default {
     name: 'Home',
-    
-
     components: {
     
     },
@@ -36,7 +37,7 @@ export default {
         { text: '血圧(mmHg)', value: 'bloodPressure'},
         { text: '最低血圧(mmHg)', value: 'minimumBloodPressure'},
         { text: 'ステータス', value: 'status' },
-        { text: '詳細', value: 'action' },
+        { text: '詳細', value: 'actions' },
         ],
         desserts: [
         {
@@ -46,6 +47,7 @@ export default {
             bloodPressure:115.0,
             minimumBloodPressure:75.0,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ２',
@@ -54,6 +56,7 @@ export default {
             bloodPressure:115.3,
             minimumBloodPressure:74.2,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ３',
@@ -62,6 +65,7 @@ export default {
             bloodPressure:113.2,
             minimumBloodPressure:77.1,
             status: '異常',
+            color:'red--text',
         },
         {
             name: 'ユーザ４',
@@ -70,6 +74,7 @@ export default {
             bloodPressure:116.1,
             minimumBloodPressure:78.5,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ５',
@@ -78,6 +83,7 @@ export default {
             bloodPressure:115.9,
             minimumBloodPressure:76.4,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ６',
@@ -86,6 +92,7 @@ export default {
             bloodPressure:117.1,
             minimumBloodPressure:79.2,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ７',
@@ -94,6 +101,7 @@ export default {
             bloodPressure:112.0,
             minimumBloodPressure:71.0,
             status: '異常',
+            color:'red--text',
         },
         {
             name: 'ユーザ８',
@@ -102,6 +110,7 @@ export default {
             bloodPressure:112.9,
             minimumBloodPressure:73.2,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ９',
@@ -110,6 +119,7 @@ export default {
             bloodPressure:116.7,
             minimumBloodPressure:76.3,
             status: '正常',
+            color:'',
         },
         {
             name: 'ユーザ１０',
@@ -118,6 +128,7 @@ export default {
             bloodPressure:109.0,
             minimumBloodPressure:75.7,
             status: '正常',
+            color:'',
         },
         ],
     }
