@@ -23,7 +23,6 @@
             <v-row>
                 <v-text-field
                 v-model="mailAddress"
-                
                 hint="メールアドレス"
                 required>
                 </v-text-field>
@@ -35,16 +34,15 @@
             </v-row>
             <v-row>
                 <v-radio-group
+                v-model="radioGroup"
                 column>
                     <v-radio
                         label="警察"
-                        value="1"
-                        v-modele="abnormal"
+                        value="2"
                     ></v-radio>
                     <v-radio
                         label="救急車"
                         value="0"
-                        v-modele="abnormal"
                     ></v-radio>
                 </v-radio-group>
             </v-row>
@@ -61,6 +59,7 @@
                     送信
                 </v-btn>
             </v-row>
+            <v-row></v-row>
         </v-form>
     </v-row>
 </v-container>
@@ -74,8 +73,24 @@ components: {},
 data() {
     return {
         mailAddress: "",
-        abnromal: "",
-        detail: "",
+        radioGroup: "",
+        detail: "0",
+    methods: {
+        sendmail() {
+            console.log("aiueo")
+                    this.axios.get('http://localhost:8000/mail/', {
+                        params: {
+                            recipient: this.mailAddress,
+                            abnormal: this.radioGroup,
+                            detail: "0",
+                        }
+                    }).then(function (response) {
+                        console.log(response)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+                },
+    },
     headers: [
         {
         text: "バイタル名",
@@ -335,22 +350,6 @@ data() {
         oclock24: "125",
         },
     ],
-    methods: {
-        sendmail() {
-            console.log("aiueo")
-                    this.axios.get('http://localhost:8000/mail/', {
-                        params: {
-                            recipient: this.mailAddress,
-                            abnormal: this.abnormal,
-                            detail: "0",
-                        }
-                    }).then(function (response) {
-                        console.log(response)
-                    }).catch(function (error) {
-                        console.log(error)
-                    })
-                },
-    }
     };
 },
 };
