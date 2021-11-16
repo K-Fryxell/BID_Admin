@@ -23,7 +23,6 @@
             <v-row>
                 <v-text-field
                 v-model="mailAddress"
-                :rules="mailAddress"
                 hint="メールアドレス"
                 required>
                 </v-text-field>
