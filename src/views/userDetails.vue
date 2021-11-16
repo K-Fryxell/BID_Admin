@@ -69,6 +69,7 @@
             </v-row>
             <v-row class="ma-0 pa-0" justify="center">
                 <v-btn
+                    @click="close"
                     dark
                     style="background-color: grey"
                     outlined
@@ -89,12 +90,6 @@ export default {
 name: "Home",
 
 components: {},
-methods:{
-    // モーダルを閉じる
-        close(){
-            this.dialog = false
-        }
-},
 data() {
     return {
         // モーダル表示・非表示
@@ -365,7 +360,12 @@ data() {
     };
 },
 methods: {
+    // モーダルを閉じる
+    close(){
+        this.dialog = false
+    },
         sendmail() {
+            this.dialog = true
             console.log("sendmail_method")
                     this.axios.get('http://localhost:8000/mail/', {
                         params: {
