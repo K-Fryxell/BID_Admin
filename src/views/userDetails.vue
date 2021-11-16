@@ -23,7 +23,6 @@
             <v-row>
                 <v-text-field
                 v-model="mailAddress"
-                :rules="mailAddress"
                 hint="メールアドレス"
                 required>
                 </v-text-field>
@@ -94,6 +93,8 @@ name: "Home",
 components: {},
 data() {
     return {
+        radioGroup: "",
+        mailAddress: "",
     headers: [
         {
         text: "バイタル名",
