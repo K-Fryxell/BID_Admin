@@ -75,22 +75,6 @@ data() {
         mailAddress: "",
         radioGroup: "",
         detail: "0",
-    methods: {
-        sendmail() {
-            console.log("aiueo")
-                    this.axios.get('http://localhost:8000/mail/', {
-                        params: {
-                            recipient: this.mailAddress,
-                            abnormal: this.radioGroup,
-                            detail: "0",
-                        }
-                    }).then(function (response) {
-                        console.log(response)
-                    }).catch(function (error) {
-                        console.log(error)
-                    })
-                },
-    },
     headers: [
         {
         text: "バイタル名",
@@ -352,5 +336,21 @@ data() {
     ],
     };
 },
+methods: {
+        sendmail() {
+            console.log("sendmail_method")
+                    this.axios.get('http://localhost:8000/mail/', {
+                        params: {
+                            recipient: this.mailAddress,
+                            abnormal_num: this.radioGroup,
+                            detail_num: "0",
+                        }
+                    }).then(function (response) {
+                        console.log(response)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+                },
+    },
 };
 </script>
