@@ -11,16 +11,17 @@ const routes = [
     component: Home
   },
   {
-      path: '/user_details',
-      name: 'userDetails',
-      component: () =>
-          import('@/views/userDetails.vue')
+    path: '/user_details',
+    name: 'userDetails',
+    component: () =>
+      import('@/views/userDetails.vue')
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import('../views/About.vue')
-  // }
+  {
+    path: '/regist',
+    name: 'Regist',
+    component: () =>
+      import('../views/regist.vue')
+  }
 ]
 
 const router = new VueRouter({
