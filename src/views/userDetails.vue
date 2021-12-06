@@ -1,7 +1,7 @@
 <template>
 <v-container>
     <v-card-title>ユーザ詳細</v-card-title>
-    <v-card-text>ユーザ１様</v-card-text>
+    <v-card-text>ユーザ３様</v-card-text>
     <v-data-table
     :headers="headers"
     :items="desserts"
@@ -62,6 +62,25 @@
             <v-row></v-row>
         </v-form>
     </v-row>
+    <v-dialog v-model="dialog" class="ma-0 pa-0">
+        <v-card class="ma-0 pt-12 pl-12 pr-12 pb-8">
+            <v-row class="ma-0 pa-0" justify="center">
+                <v-card-title class="ma-0 pa-0">通報処理を完了しました</v-card-title>
+            </v-row>
+            <v-row class="ma-0 pa-0" justify="center">
+                <v-btn
+                    dark
+                    style="background-color: grey"
+                    outlined
+                    rounded
+                    class="mt-6 ma-0 pa-0 white--text"
+                    to="/"
+                >
+                    確認
+                </v-btn>
+            </v-row>
+        </v-card>
+    </v-dialog>
 </v-container>
 </template>
 
@@ -70,8 +89,17 @@ export default {
 name: "Home",
 
 components: {},
+methods:{
+    // モーダルを閉じる
+        close(){
+            this.dialog = false
+        }
+},
 data() {
     return {
+        // モーダル表示・非表示
+        dialog:false,
+        
         mailAddress: "",
         radioGroup: "",
         detail: "0",
