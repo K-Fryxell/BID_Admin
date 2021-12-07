@@ -9,7 +9,13 @@ const routes = [
     name: 'top',
     component: () =>
         import('@/views/admin/top.vue')
-},
+  },
+  {
+    path: '/regist',
+    name: 'regist',
+    component: () =>
+        import('@/views/public/regist.vue')
+  },
   {
       path: '/user_details',
       name: 'userDetails',
@@ -21,19 +27,25 @@ const routes = [
     name: 'userRegist',
     component: () =>
         import('@/views/public/regist.vue')
-},
+  },
   {
     path: '/user_measures',
     name: 'userMeasures',
     component: () =>
         import('@/views/public/userMeasures.vue')
-},
-{
+  },
+  {
   path: '/user_measuresDetail',
   name: 'userMeasuresDetail',
   component: () =>
       import('@/views/public/userMeasuresDetail.vue')
-},
+  },
+  {
+    path: '/message',
+    name: 'message',
+    component: () =>
+        import('@/views/public/message.vue')
+  },
   // {
   //   path: '/about',
   //   name: 'About',
