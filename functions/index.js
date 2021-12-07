@@ -1,7 +1,6 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
-var firestore = admin.firestore()
 
 const pushMessage = (fcmToken) => ({
     notification: {
@@ -15,8 +14,6 @@ const pushMessage = (fcmToken) => ({
 })
 
 exports.sendMessages = functions.firestore.document('users/{name}').onCreate((_snapshot, context) => {
-    const name = context.params.name
-
     const token = "fvjjznqaS0KUdF8RtJ5KP1:APA91bHREEmTV0Z8ozs_Yrli0WQRqLPeSYK75b_FLA_0cZQp48frvaG8sKV3-FkbIClxlm511aoA3GuNvqGkEdisYNlkrRP5VVauQ9PS8vm1ssMiNsAJ4GiekNdiOhDLyrycQOLnxHns"
     admin.messaging().send(pushMessage(token, "プッシュ通知テスト"))
         .then((response) => { console.log('Successfully sent message:', response) })
