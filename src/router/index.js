@@ -6,22 +6,39 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'TOP',
+    name: 'top',
     component: () =>
-      import('@/views/admin/top.vue')
+        import('@/views/admin/top.vue')
+},
+  {
+      path: '/user_details',
+      name: 'userDetails',
+      component: () =>
+          import('@/views/admin/userDetails.vue')
   },
   {
-    path: '/user_details',
-    name: 'userDetails',
+    path: '/user_regist',
+    name: 'userRegist',
     component: () =>
-      import('@/views/public/userDetails.vue')
-  },
+        import('@/views/public/regist.vue')
+},
   {
-    path: '/regist',
-    name: 'Regist',
+    path: '/user_measures',
+    name: 'userMeasures',
     component: () =>
-      import('../views/public/regist.vue')
-  }
+        import('@/views/public/userMeasures.vue')
+},
+{
+  path: '/user_measuresDetail',
+  name: 'userMeasuresDetail',
+  component: () =>
+      import('@/views/public/userMeasuresDetail.vue')
+},
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   component: () => import('../views/About.vue')
+  // }
 ]
 
 const router = new VueRouter({
