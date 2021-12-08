@@ -40,17 +40,6 @@ const routes = [
     component: () =>
         import('@/views/public/userMeasuresDetail.vue')
   },
-  {
-    path: '/message',
-    name: 'message',
-    component: () =>
-        import('@/views/public/message.vue')
-  },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import('../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({
