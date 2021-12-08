@@ -9,7 +9,13 @@ const routes = [
     name: 'top',
     component: () =>
         import('@/views/admin/top.vue')
-},
+  },
+  {
+    path: '/regist',
+    name: 'regist',
+    component: () =>
+        import('@/views/public/regist.vue')
+  },
   {
       path: '/user_details',
       name: 'userDetails',
@@ -21,24 +27,19 @@ const routes = [
     name: 'userRegist',
     component: () =>
         import('@/views/public/regist.vue')
-},
+  },
   {
     path: '/user_measures',
     name: 'userMeasures',
     component: () =>
         import('@/views/public/userMeasures.vue')
-},
-{
-  path: '/user_measuresDetail',
-  name: 'userMeasuresDetail',
-  component: () =>
-      import('@/views/public/userMeasuresDetail.vue')
-},
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import('../views/About.vue')
-  // }
+  },
+  {
+    path: '/user_measuresDetail',
+    name: 'userMeasuresDetail',
+    component: () =>
+        import('@/views/public/userMeasuresDetail.vue')
+  },
 ]
 
 const router = new VueRouter({
