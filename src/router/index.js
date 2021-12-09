@@ -9,31 +9,25 @@ const routes = [
     name: 'top',
     component: () =>
         import('@/views/admin/top.vue')
-},
-  {
-      path: '/user_details',
-      name: 'userDetails',
-      component: () =>
-          import('@/views/admin/userDetails.vue')
   },
   {
     path: '/user_regist',
     name: 'userRegist',
     component: () =>
         import('@/views/public/regist.vue')
-},
+  },
   {
     path: '/user_measures',
     name: 'userMeasures',
     component: () =>
         import('@/views/public/userMeasures.vue')
-},
-{
-  path: '/user_measuresDetail',
-  name: 'userMeasuresDetail',
-  component: () =>
-      import('@/views/public/userMeasuresDetail.vue')
-},
+  },
+  {
+    path: '/user_measuresDetail',
+    name: 'userMeasuresDetail',
+    component: () =>
+        import('@/views/public/userMeasuresDetail.vue')
+  },
   // {
   //   path: '/about',
   //   name: 'About',
