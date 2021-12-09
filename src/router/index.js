@@ -6,22 +6,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'top',
+    name: 'adminTop',
     component: () =>
         import('@/views/admin/top.vue')
-  },
-  {
-    path: '/regist',
-    name: 'regist',
-    component: () =>
-        import('@/views/public/regist.vue')
-  },
-  {
-      path: '/user_details',
-      name: 'userDetails',
-      component: () =>
-          import('@/views/admin/userDetails.vue')
-  },
+  },  
   {
     path: '/user_regist',
     name: 'userRegist',
