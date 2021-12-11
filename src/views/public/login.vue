@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
 export default {
   name: "Login",
@@ -59,40 +59,40 @@ export default {
       signInWithEmailAndPassword(getAuth(), this.mailaddress, this.password)
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
+          const user = userCredential.user
           // ...
           alert("成功", user);
-          this.$store.commit("onUserLoginStatusChanged", true);
-          this.isLoggedIn = true;
+          this.$store.commit("onUserLoginStatusChanged", true)
+          this.isLoggedIn = true
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          alert("失敗", errorCode, errorMessage);
+          const errorCode = error.code
+          const errorMessage = error.message
+          alert("失敗", errorCode, errorMessage)
         });
     },
     logout() {
-      this.$store.dispatch("logOut");
-      location.reload();
+      this.$store.dispatch("logOut")
+      location.reload()
     },
   },
   created() {
-    this.isLoggedIn = this.$store.getters.isLoggedIn;
+    this.isLoggedIn = this.$store.getters.isLoggedIn
   },
   computed: {
     mailRequired() {
-      return this.mailaddress == "";
+      return this.mailaddress == ""
     },
     passwordRequired() {
-      return this.password == "";
+      return this.password == ""
     },
     activeLogin() {
       if (this.mailaddress == "") {
-        return true;
+        return true
       } else if (this.password == "") {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     },
   },
