@@ -7,13 +7,20 @@
             <v-form v-model="valid">
                 <!-- 氏名入力 -->
                 <v-row class="ma-0 pa-0">
-                    <v-col>
+                    <v-col cols="6" lg="4">
                         <v-text-field
-                            v-model="name"
-                            class="ma-0 pa-0 pb-6"
                             prepend-icon="mdi-account-circle"
-                            label="氏名"
-                            :rules="nameRules"/>
+                            v-model="fname"
+                            class="ma-0 pa-0 pb-6"
+                            label="姓"
+                            :rules="fnameRules"/>
+                    </v-col>
+                    <v-col cols="6" lg="4">
+                        <v-text-field
+                            v-model="lname"
+                            class="ma-0 pa-0 pb-6"
+                            label="名"
+                            :rules="lnameRules"/>
                     </v-col>
                 </v-row>
                 <!-- mail入力 -->
@@ -23,7 +30,7 @@
                             v-model="mailaddress"
                             class="ma-0 pa-0 pb-6"
                             prepend-icon="mdi-email"
-                            label="e-mail"
+                            label="メールアドレス"
                             hint="メールアドレスは50字以下で記入してください。"
                             :rules="emailRules"
                             counter
@@ -41,7 +48,7 @@
                             :type="showPassword ? 'text' : 'password'"
                             v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                             @click:append="showPassword = !showPassword"
-                            label="password"
+                            label="パスワード"
                             hint="パスワードは6字以上20字以下にしてください。"
                             :rules="passwordRules"
                             counter
@@ -50,7 +57,7 @@
                     </v-col>
                 </v-row>
                 <!-- パスワード再入力 -->
-                <v-row class="ma-0 pa-0 pb-6">
+                <v-row class="ma-0 pa-0">
                     <v-col>
                         <v-text-field
                             v-model="againpassword"
@@ -83,8 +90,10 @@
         data() {
             return {
                 valid: true,
-                // 氏名
-                name:'',
+                // 苗字
+                fname:'',
+                // 名前
+                lname:'',
                 // メールアドレス
                 mailaddress: "",
                 // パスワード
@@ -93,8 +102,13 @@
                 againpassword: "",
                 showPassword: false,
                 // ここからルール
-                // 氏名
-                nameRules: [
+                // 苗字
+                fnameRules: [
+                    v => !!v || '入力欄が空白です。',
+                    v => /^[a-zA-Zａ-ｚＡ-Ｚぁ-んァ-ン一-龥]+$/.test(v) || '使用できない文字が含まれています。'
+                ],
+                // 名前
+                lnameRules: [
                     v => !!v || '入力欄が空白です。',
                     v => /^[a-zA-Zａ-ｚＡ-Ｚぁ-んァ-ン一-龥]+$/.test(v) || '使用できない文字が含まれています。'
                 ],
