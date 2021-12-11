@@ -55,6 +55,8 @@ export default {
       emailRules: [
         v => !!v || 'E-mailが入力されていません',
         v => /.+@.+\..+/.test(v) || 'E-mailの書式が間違っています',
+        v => /^\S+@\S+\.\S+$/.test(v) || 'E-mailの書式が間違っています',
+        v => /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/.test(v) || 'E-mailの書式が間違っています',
       ],
       passwordRules: [
         v => !!v || 'パスワードが入力されていません',

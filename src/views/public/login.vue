@@ -30,8 +30,6 @@
           counter
           required
         />
-        <p v-if="mailRequired" class="error-message">メールアドレスを入力してください</p>
-        <p v-if="passwordRequired" class="error-message">パスワードを入力してください</p>
         <v-btn @click="login" :disabled="!valid">送信</v-btn>
         <v-btn @click="logout">確認用ログアウト</v-btn>
         <div v-if="this.isLoggedIn">現状変化ないけどログインできてまーす</div>
@@ -56,6 +54,9 @@ export default {
       status: "",
       emailRules: [
         v => !!v || 'E-mailが入力されていません',
+        v => /.+@.+\..+/.test(v) || 'E-mailの書式が間違っています',
+        v => /^\S+@\S+\.\S+$/.test(v) || 'E-mailの書式が間違っています',
+        v => /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/.test(v) || 'E-mailの書式が間違っています',
       ],
       passwordRules: [
         v => !!v || 'パスワードが入力されていません',
