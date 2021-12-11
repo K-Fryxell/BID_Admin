@@ -11,22 +11,22 @@ const routes = [
       import('@/views/admin/top.vue')
   },
   {
-    path: '/regist',
+    path: '/regist_admin',
     name: 'regist',
     component: () =>
-      import('@/views/public/regist.vue')
+      import('@/views/admin/registAdmin.vue')
+  },
+  {
+    path: '/regist_user',
+    name: 'registUser',
+    component: () =>
+      import('@/views/admin/registUser.vue')
   },
   {
     path: '/login',
     name: 'login',
     component: () =>
       import('@/views/public/login.vue')
-  },
-  {
-    path: '/user_regist',
-    name: 'userRegist',
-    component: () =>
-      import('@/views/public/regist.vue')
   },
   {
     path: '/user_measures',
