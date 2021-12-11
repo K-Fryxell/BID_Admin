@@ -48,7 +48,8 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getFirestore, doc, getDoc } from "firebase/firestore"
 
 export default {
     name: 'Home',
