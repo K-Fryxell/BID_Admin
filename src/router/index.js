@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'top',
+    name: 'adminTop',
     component: () =>
       import('@/views/admin/top.vue')
   },
