@@ -32,7 +32,7 @@
         />
         <v-btn @click="login" :disabled="!valid">送信</v-btn>
         <v-btn @click="logout">確認用ログアウト</v-btn>
-        <div v-if="this.isLoggedIn">現状変化ないけどログインできてまーす</div>
+        <div v-if="this.isLoggedIn">{{this.$store.getters.user}}でログインできてまーす</div>
         <div v-if="!this.isLoggedIn">ログアウト状態</div>
       </v-form>
     </v-card-text>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 
 export default {
   name: "Login",
@@ -68,11 +68,15 @@ export default {
   methods: {
     login() {
       signInWithEmailAndPassword(getAuth(), this.mailaddress, this.password)
-        .then((userCredential) => {
+        .then(() => {
           // Signed in
-          const user = userCredential.user
-          // ...
-          alert("成功", user);
+          onAuthStateChanged(getAuth(), user=> {
+            if(user) {
+              console.log(user.email)
+              this.$store.commit("onAuthStateChanged", user.email)
+            }
+          })
+          alert("成功");
           this.$store.commit("onUserLoginStatusChanged", true)
           this.isLoggedIn = true
         })
