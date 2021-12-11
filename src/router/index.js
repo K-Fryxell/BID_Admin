@@ -23,12 +23,6 @@ const routes = [
       import('@/views/public/login.vue')
   },
   {
-    path: '/user_details',
-    name: 'userDetails',
-    component: () =>
-      import('@/views/admin/userDetails.vue')
-  },
-  {
     path: '/user_regist',
     name: 'userRegist',
     component: () =>

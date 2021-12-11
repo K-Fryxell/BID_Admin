@@ -32,9 +32,7 @@
           >綾瀬循環器病院</a
         >
       </div>
-      <a href="#">
-        <img src="..\..\assets/back.png" alt="戻るボタン" class="back"
-      /></a>
+      <a href="#"> <img src="..\..\assets/back.png" alt="戻るボタン" class="back" /></a>
     </div>
   </v-container>
 </template>
