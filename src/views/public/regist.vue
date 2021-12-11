@@ -4,7 +4,7 @@
       <h1 class="display-1">会員登録</h1>
     </v-card-title>
     <v-card-text>
-      <v-form>
+      <v-form v-model="valid">
         <!-- mail入力 -->
         <v-text-field
           v-model="mailaddress"
@@ -12,6 +12,7 @@
           prepend-icon="mdi-email"
           label="e-mail"
           hint="メールアドレスは50字以下で記入してください。"
+          :rules="emailRules"
           counter
           required
         />
@@ -25,12 +26,11 @@
           @click:append="showPassword = !showPassword"
           label="password"
           hint="パスワードは6字以上20字以下にしてください。"
+          :rules="passwordRules"
           counter
           required
         />
-        <p v-if="mailRequired" class="error-message">メールアドレスを入力してください</p>
-        <p v-if="passwordRequired" class="error-message">パスワードを入力してください</p>
-        <v-btn @click="regist" v-bind:disabled="activeRegist">送信</v-btn>
+        <v-btn @click="regist" :disabled="!valid">送信</v-btn>
       </v-form>
     </v-card-text>
   </v-card>
@@ -48,9 +48,20 @@ export default {
   name: "Regist",
   data() {
     return {
+      valid: true,
       mailaddress: "",
       password: "",
       showPassword: false,
+      emailRules: [
+        v => !!v || 'E-mailが入力されていません',
+        v => /.+@.+\..+/.test(v) || 'E-mailの書式が間違っています',
+      ],
+      passwordRules: [
+        v => !!v || 'パスワードが入力されていません',
+        v => /^[0-9a-zA-Z]*$/.test(v) || '全半角英数字のみ使用可能です',
+        v => (v && v.length >= 6) || 'パスワードは6文字以上で入力してください',
+        v => (v && v.length <= 12) || 'パスワードは12文字以内で入力してください',
+      ],
     }
   },
   components: {},
@@ -91,21 +102,6 @@ export default {
     },
   },
   computed: {
-    mailRequired() {
-      return this.mailaddress == ""
-    },
-    passwordRequired() {
-      return this.password == ""
-    },
-    activeRegist() {
-      if (this.mailaddress == "") {
-        return true
-      } else if (this.password == "") {
-        return true
-      } else {
-        return false
-      }
-    },
   },
   created() {},
 }
