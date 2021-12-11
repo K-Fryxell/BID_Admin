@@ -51,7 +51,7 @@ export default {
 						// User logged in already or has just logged in.
 						// ユーザーIDの取得
 						const db = getFirestore()
-						addDoc(collection(db, 'users'), {
+						addDoc(collection(db, 'users', user.uid, 'bid'), {
 							email: this.mailaddress,
 						})
 						//登録後のuser情報、セッション情報をstoreに保存
