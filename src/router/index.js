@@ -8,25 +8,37 @@ const routes = [
     path: '/',
     name: 'adminTop',
     component: () =>
-        import('@/views/admin/top.vue')
-  },  
+      import('@/views/admin/top.vue')
+  },
+  {
+    path: '/regist',
+    name: 'regist',
+    component: () =>
+      import('@/views/public/regist.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () =>
+      import('@/views/public/login.vue')
+  },
   {
     path: '/user_regist',
     name: 'userRegist',
     component: () =>
-        import('@/views/public/regist.vue')
+      import('@/views/public/regist.vue')
   },
   {
     path: '/user_measures',
     name: 'userMeasures',
     component: () =>
-        import('@/views/public/userMeasures.vue')
+      import('@/views/public/userMeasures.vue')
   },
   {
     path: '/user_measuresDetail',
     name: 'userMeasuresDetail',
     component: () =>
-        import('@/views/public/userMeasuresDetail.vue')
+      import('@/views/public/userMeasuresDetail.vue')
   },
 ]
 
