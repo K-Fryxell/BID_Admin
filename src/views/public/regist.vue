@@ -41,8 +41,8 @@ import {
   getAuth,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
-} from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+} from "firebase/auth"
+import { getFirestore, collection, addDoc } from "firebase/firestore"
 
 export default {
   name: "Regist",
@@ -51,7 +51,7 @@ export default {
       mailaddress: "",
       password: "",
       showPassword: false,
-    };
+    }
   },
   components: {},
   methods: {
@@ -59,54 +59,54 @@ export default {
       createUserWithEmailAndPassword(getAuth(), this.mailaddress, this.password)
         .then(() => {
           console.log("user created");
-          alert("success! user created");
+          alert("success! user created")
           onAuthStateChanged(getAuth(), (user) => {
             if (user) {
               // User logged in already or has just logged in.
               // ユーザーIDの取得
-              const db = getFirestore();
-              addDoc(collection(db, "users"), {
+              const db = getFirestore()
+              addDoc(collection(db, "users", user.uid, 'bid'), {
                 email: this.mailaddress,
               });
               //登録後のuser情報、セッション情報をstoreに保存
-              this.$store.commit("onAuthStateChanged", user.uid);
+              this.$store.commit("onAuthStateChanged", user.uid)
               if (user.uid) {
                 //セッション情報をログイン状態に
-                this.$store.commit("onUserLoginStatusChanged", true);
+                this.$store.commit("onUserLoginStatusChanged", true)
                 //データベース参照用uid
-                console.log(this.$store.getters.user);
+                console.log(this.$store.getters.user)
                 //セッション確認用フラグ
-                console.log(this.$store.getters.isLoggedIn);
+                console.log(this.$store.getters.isLoggedIn)
               } else {
-                console.log("ユーザ情報取得に失敗");
+                console.log("ユーザ情報取得に失敗")
               }
             }
-          });
+          })
         })
         .catch((error) => {
-          alert(error.message);
-          console.error(error);
-          alert("error!");
-        });
+          alert(error.message)
+          console.error(error)
+          alert("error!")
+        })
     },
   },
   computed: {
     mailRequired() {
-      return this.mailaddress == "";
+      return this.mailaddress == ""
     },
     passwordRequired() {
-      return this.password == "";
+      return this.password == ""
     },
     activeRegist() {
       if (this.mailaddress == "") {
-        return true;
+        return true
       } else if (this.password == "") {
-        return true;
+        return true
       } else {
-        return false;
+        return false
       }
     },
   },
   created() {},
-};
+}
 </script>
