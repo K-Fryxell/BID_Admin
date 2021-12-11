@@ -71,38 +71,31 @@ export default {
             ],
         }
     },
-    mounted () {
-        // this.getUsers()
-        // firebase.firestore().collection("users").doc().collection('bid').onSnapshot(() => {
-        //     this.getUsers()
-        // })
-    },
     methods: {
-        // getUsers(){
-        //     firebase.firestore().collection("users").doc().collection('bid').get().then(async snapshot => {
-        //         await snapshot.forEach(doc => {
-        //             //contentは要素
-        //             //pushは配列データそのもの
-        //             // this.allData.push(doc.data().content)
-        //             this.box.push({
-        //                 name:doc.data().name,
-        //                 bodyTemperature:doc.data().bodyTemperature,
-        //                 heartRate:doc.data().heartRate,
-        //                 bloodPressure:doc.data().bloodPressure,
-        //                 minimumBloodPressure:doc.data().minimumBloodPressure,
-        //                 status:doc.data().status
-        //             })
-        //         })
-        //         this.users = this.box
-        //         this.box = []
-        //     })
-        // },
-        // onAuth(){
-        //     this.$store.commit('')
-        // }
+        getUsers() {
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    const db = getFirestore()
+                    const docRef = doc(db, "users", user.uid, "bid", user.uid)
+                    const docSnap = getDoc(docRef)
+                    console.log(docSnap)
+
+
+                    this.$store.commit("onAuthStateChanged", user.uid)
+                    if (user.uid) {
+                        //データベース参照用uid
+                        console.log(this.$store.getters.user)
+                        //セッション確認用フラグ
+                        console.log(this.$store.getters.isLoggedIn)
+                    } else {
+                        console.log("ユーザ情報取得に失敗")
+                    }
+                }
+            })
+        }
     },
-    // created:function(){
-    //     this.onAuth()
-    // }
+    created:function(){
+        this.getUsers()
+    }
 }
 </script>
