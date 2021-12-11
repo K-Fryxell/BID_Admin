@@ -19,7 +19,7 @@
 			v-bind:append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
 			@click:append="showPassword = !showPassword"
 			label="password"
-			hint="パスワードは8字以上20字以下にしてください。"
+			hint="パスワードは6字以上20字以下にしてください。"
 			counter
 			required
 		/>
@@ -32,7 +32,7 @@ import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from 'fir
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 
 export default {
-	name: 'Home',
+	name: 'Regist',
 	data() {
 		return {
             mailaddress: '',
@@ -54,7 +54,18 @@ export default {
 						addDoc(collection(db, 'users'), {
 							email: this.mailaddress,
 						})
-						console.log(user.uid)
+						//登録後のuser情報、セッション情報をstoreに保存
+						this.$store.commit('onAuthStateChanged', user.uid)
+						if(user.uid) {
+							//セッション情報をログイン状態に
+							this.$store.commit('onUserLoginStatusChanged', true)
+							//データベース参照用uid
+							console.log(this.$store.getters.user)
+							//セッション確認用フラグ
+							console.log(this.$store.getters.isLoggedIn)
+						} else {
+							console.log("ユーザ情報取得に失敗")
+						}
 					}
 				})
 			}).catch((error) => {
