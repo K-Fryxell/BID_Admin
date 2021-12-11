@@ -5,7 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { initializeApp } from "firebase/app"
+import { initializeApp } from "firebase/app"  
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,

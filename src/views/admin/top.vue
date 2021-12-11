@@ -1,6 +1,13 @@
 <template>
     <v-container>
+        <v-btn class="ma-6" to="../regist_admin">
+            管理者新規登録
+        </v-btn>
+        <v-btn class="ma-6" to="../regist_user">
+            ユーザ新規登録
+        </v-btn>
         <v-data-table
+            class="mt-12"
             :headers="headers"
             :items="users"
             :items-per-page="10"
@@ -21,6 +28,22 @@
                 <v-btn @click="onClickShow(item)" to="/user_details">表示</v-btn>
             </template>
         </v-data-table>
+        <v-dialog persistent v-model="emergency" width="600">
+            <v-card>
+                <v-row justify="center" class="pa-0 ma-0">
+                    <v-col cols="auto">
+                        <v-card-title v-slot:item.status="{ item: users }">
+                            {{emergencyVitalLog.time}}に{{users.useruid}}が{{emergencyVitalLog.cause}}になったので通報しました。
+                        </v-card-title>
+                        <v-row justify="center" class="pa-0 ma-0">
+                            <v-btn width="50" @click="emergency=false">
+                                確認
+                            </v-btn>
+                        </v-row>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -34,6 +57,7 @@ export default {
     },
     data () {
         return {
+            emergency:false,
             users: [],
             box:[],
             headers: [
