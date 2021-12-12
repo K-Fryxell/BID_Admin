@@ -32,6 +32,9 @@
           >綾瀬循環器病院</a
         >
       </div>
+      <a href="/user_measuresDetail"
+        ><img src="..\..\assets/right.png" alt="詳細ページへ" class="detail"
+      /></a>
       <a href="#">
         <img src="..\..\assets/back.png" alt="戻るボタン" class="back"
       /></a>
@@ -117,6 +120,12 @@ ul {
 .item {
   width: 22px;
   margin-right: 5px;
+}
+.detail {
+  position: absolute;
+  right: 18px;
+  top: 370px;
+  width: 30px;
 }
 .back {
   position: absolute;
