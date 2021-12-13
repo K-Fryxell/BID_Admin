@@ -1,137 +1,102 @@
 <template>
     <v-container>
+        <v-btn class="ma-6" to="../regist_admin">
+            管理者新規登録
+        </v-btn>
+        <v-btn class="ma-6" to="../regist_user">
+            ユーザ新規登録
+        </v-btn>
         <v-data-table
+            class="mt-12"
             :headers="headers"
-            :items="desserts"
+            :items="users"
             :items-per-page="10"
         >
-            <template v-slot:item.status="{ item }">
-                <div :class="item.color" style="margin:0; padding:0;">
-                    {{item.status}}
-                </div>
+            <template v-slot:item.status="{ item: users }">
+                <tbody class="custom-body">
+                    <tr v-for="(user,index) in users" :key="index" :index="index" class="custom-tr">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.bodyTemperature }}</td>
+                        <td>{{ user.heartRate }}</td>
+                        <td>{{ user.bloodPressure }}</td>
+                        <td>{{ user.minimumBloodPressure }}</td>
+                        <td>{{ user.status }}</td>
+                    </tr>
+                </tbody>
             </template>
             <template #item.actions="{ item }">
                 <v-btn @click="onClickShow(item)" to="/user_details">表示</v-btn>
             </template>
         </v-data-table>
+        <v-dialog persistent v-model="emergency" width="600">
+            <v-card>
+                <v-row justify="center" class="pa-0 ma-0">
+                    <v-col cols="auto">
+                        <v-card-title v-slot:item.status="{ item: users }">
+                            {{emergencyVitalLog.time}}に{{users.useruid}}が{{emergencyVitalLog.cause}}になったので通報しました。
+                        </v-card-title>
+                        <v-row justify="center" class="pa-0 ma-0">
+                            <v-btn width="50" @click="emergency=false">
+                                確認
+                            </v-btn>
+                        </v-row>
+                    </v-col>
+                </v-row>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getFirestore, doc, getDoc } from "firebase/firestore"
+
 export default {
     name: 'Home',
     components: {
     
     },
     data () {
-    return {
-        headers: [
-        {
-            text: 'ユーザ名',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-        },
-        { text: '体温(℃)', value: 'bodyTemperature'},
-        { text: '心拍数(bpm)', value: 'heartRate' },
-        { text: '血圧(mmHg)', value: 'bloodPressure'},
-        { text: '最低血圧(mmHg)', value: 'minimumBloodPressure'},
-        { text: 'ステータス', value: 'status' },
-        { text: '詳細', value: 'actions' },
-        ],
-        desserts: [
-        {
-            name: 'ユーザ１',
-            bodyTemperature:36.5,
-            heartRate:65,
-            bloodPressure:115.0,
-            minimumBloodPressure:75.0,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ２',
-            bodyTemperature:36.3,
-            heartRate:69,
-            bloodPressure:115.3,
-            minimumBloodPressure:74.2,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ３',
-            bodyTemperature:39.8,
-            heartRate:64,
-            bloodPressure:113.2,
-            minimumBloodPressure:77.1,
-            status: '異常',
-            color:'red--text',
-        },
-        {
-            name: 'ユーザ４',
-            bodyTemperature:35.7,
-            heartRate:70,
-            bloodPressure:116.1,
-            minimumBloodPressure:78.5,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ５',
-            bodyTemperature:36.1,
-            heartRate:62,
-            bloodPressure:115.9,
-            minimumBloodPressure:76.4,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ６',
-            bodyTemperature:37.0,
-            heartRate:68,
-            bloodPressure:117.1,
-            minimumBloodPressure:79.2,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ７',
-            bodyTemperature:36.9,
-            heartRate:130,
-            bloodPressure:112.0,
-            minimumBloodPressure:71.0,
-            status: '異常',
-            color:'red--text',
-        },
-        {
-            name: 'ユーザ８',
-            bodyTemperature:36.3,
-            heartRate:65,
-            bloodPressure:112.9,
-            minimumBloodPressure:73.2,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ９',
-            bodyTemperature:36.7,
-            heartRate:66,
-            bloodPressure:116.7,
-            minimumBloodPressure:76.3,
-            status: '正常',
-            color:'',
-        },
-        {
-            name: 'ユーザ１０',
-            bodyTemperature:36.3,
-            heartRate:73,
-            bloodPressure:109.0,
-            minimumBloodPressure:75.7,
-            status: '正常',
-            color:'',
-        },
-        ],
+        return {
+            emergency:false,
+            users: [],
+            box:[],
+            headers: [
+                { text: 'ユーザ名', value: 'n', align: 'start', sortable: false},
+                { text: '体温(℃)', value: 'bodyTemperature'},
+                { text: '心拍数(bpm)', value: 'heartRate' },
+                { text: '血圧(mmHg)', value: 'bloodPressure'},
+                { text: '最低血圧(mmHg)', value: 'minimumBloodPressure'},
+                { text: 'ステータス', value: 's' },
+                { text: '詳細', value: 'actions' },
+            ],
+        }
+    },
+    methods: {
+        getUsers() {
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    const db = getFirestore()
+                    const docRef = doc(db, "users", user.uid, "bid", user.uid)
+                    const docSnap = getDoc(docRef)
+                    console.log(docSnap)
+
+
+                    this.$store.commit("onAuthStateChanged", user.uid)
+                    if (user.uid) {
+                        //データベース参照用uid
+                        console.log(this.$store.getters.user)
+                        //セッション確認用フラグ
+                        console.log(this.$store.getters.isLoggedIn)
+                    } else {
+                        console.log("ユーザ情報取得に失敗")
+                    }
+                }
+            })
+        }
+    },
+    created:function(){
+        this.getUsers()
     }
-},
 }
 </script>
