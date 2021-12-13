@@ -76,7 +76,7 @@ li {
 }
 h1 {
   line-height: 1;
-  margin-left: 110px;
+  margin-left: 90px;
 
   font-size: 29px;
   margin-top: 20px;
@@ -91,17 +91,20 @@ p {
 .wrap {
   margin: 0;
   padding: 0;
-  padding-top: 130px;
-  width: 1485px;
-  height: 800px;
+  padding-top: 120px;
+  /* width: 1500px;
+  height: 800px; */
+  width: 100vw;
+  height: 100vh;
   background-image: url(~@/assets/haikei.png);
-  background-size: cover;
+  background-size: cover; /* 全画面 */
+  background-position: center center; /* 縦横中央 */
 }
 .left {
-  width: 550px;
+  width: 630px;
   float: left;
   line-height: 2;
-  margin-left: 120px;
+  margin-left: 100px;
   margin-top: 25px;
 }
 .risk {
@@ -134,7 +137,7 @@ p {
 .back {
   position: absolute;
   left: 50px;
-  top: 720px;
+  top: 750px;
   width: 80px;
 }
 .detail {
