@@ -63,11 +63,14 @@ li {
 .wrap {
   margin: 0;
   padding: 0;
-  padding-top: 130px;
-  width: 1485px;
-  height: 800px;
+  padding-top: 150px;
+  /* width: 1500px;
+        height: 800px; */
+  width: 100vw;
+  height: 100vh;
   background-image: url(~@/assets/haikei.png);
-  background-size: cover;
+  background-size: cover; /* 全画面 */
+  background-position: center center; /* 縦横中央 */
 }
 h1 {
   text-decoration: underline;
@@ -130,7 +133,7 @@ ul {
 .back {
   position: absolute;
   left: 50px;
-  top: 720px;
+  top: 750px;
   width: 80px;
 }
 </style>
