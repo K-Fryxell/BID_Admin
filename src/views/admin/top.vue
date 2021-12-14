@@ -49,7 +49,7 @@
 
 <script>
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { getFirestore, doc, getDoc, getDocs, collection } from "firebase/firestore"
+import { getFirestore, doc, getDoc } from "firebase/firestore"
 
 export default {
     name: 'Home',
