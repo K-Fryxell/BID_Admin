@@ -40,6 +40,18 @@ const routes = [
     component: () =>
       import('@/views/public/userMeasuresDetail.vue')
   },
+  {
+    path: '/top',
+    name: 'top',
+    component: () =>
+      import('@/views/public/top.vue')
+  },
+  {
+    path: '/user_detail',
+    name: 'detail',
+    component: () =>
+      import('@/views/public/detail.vue')
+  },
 ]
 
 const router = new VueRouter({
