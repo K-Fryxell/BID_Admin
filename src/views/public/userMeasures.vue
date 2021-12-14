@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <Header/>
     <div class="wrap">
       <h1><strong>心房細動</strong>の可能性があります</h1>
       <p>以下の書状が続く場合、病院で診察をしてください。</p>
@@ -137,3 +138,19 @@ ul {
   width: 80px;
 }
 </style>
+
+<script>
+import Header from '@/components/public/Header.vue'
+
+export default {
+    name: 'UserMeasurs',
+    components: {
+      Header
+    },
+    data () {
+        return {
+            
+        }
+    },
+}
+</script>
