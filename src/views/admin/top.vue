@@ -49,7 +49,7 @@
 
 <script>
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { getFirestore, doc, getDoc } from "firebase/firestore"
+import { getFirestore, doc, getDoc, getDocs, collection } from "firebase/firestore"
 
 export default {
     name: 'Home',
@@ -78,19 +78,19 @@ export default {
                 if (user) {
                     const db = getFirestore()
                     const docRef = doc(db, "users", user.uid, "bid", user.uid)
-                    const docSnap = getDoc(docRef)
-                    console.log(docSnap)
+                    getDoc(docRef).then(doc =>{
+                        console.log(doc.data())
+                    })
 
-
-                    this.$store.commit("onAuthStateChanged", user.uid)
-                    if (user.uid) {
-                        //データベース参照用uid
-                        console.log(this.$store.getters.user)
-                        //セッション確認用フラグ
-                        console.log(this.$store.getters.isLoggedIn)
-                    } else {
-                        console.log("ユーザ情報取得に失敗")
-                    }
+                    // this.$store.commit("onAuthStateChanged", user.uid)
+                    // if (user.uid) {
+                    //     //データベース参照用uid
+                    //     console.log(this.$store.getters.user)
+                    //     //セッション確認用フラグ
+                    //     console.log(this.$store.getters.isLoggedIn)
+                    // } else {
+                    //     console.log("ユーザ情報取得に失敗")
+                    // }
                 }
             })
         }
