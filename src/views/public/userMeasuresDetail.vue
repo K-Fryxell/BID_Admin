@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <Header/>
     <div class="wrap">
       <h1>心房細動の<br /><strong>リスクと対策</strong></h1>
 
@@ -147,3 +148,18 @@ p {
   width: 30px;
 }
 </style>
+
+<script>
+import Header from '@/components/public/Header.vue'
+export default {
+    name: 'userMeasuresDetail',
+    components: {
+      Header
+    },
+    data () {
+        return {
+            
+        }
+    },
+}
+</script>
