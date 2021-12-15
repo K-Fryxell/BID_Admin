@@ -6,39 +6,52 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'top',
+    name: 'adminTop',
     component: () =>
-        import('@/views/admin/top.vue')
-},
-  {
-      path: '/user_details',
-      name: 'userDetails',
-      component: () =>
-          import('@/views/admin/userDetails.vue')
+      import('@/views/admin/top.vue')
   },
   {
-    path: '/user_regist',
-    name: 'userRegist',
+    path: '/regist_admin',
+    name: 'regist',
     component: () =>
-        import('@/views/public/regist.vue')
-},
+      import('@/views/admin/registAdmin.vue')
+  },
+  {
+    path: '/regist_user',
+    name: 'registUser',
+    component: () =>
+      import('@/views/admin/registUser.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () =>
+      import('@/views/public/login.vue')
+  },
   {
     path: '/user_measures',
     name: 'userMeasures',
     component: () =>
-        import('@/views/public/userMeasures.vue')
-},
-{
-  path: '/user_measuresDetail',
-  name: 'userMeasuresDetail',
-  component: () =>
+      import('@/views/public/userMeasures.vue')
+  },
+  {
+    path: '/user_measuresDetail',
+    name: 'userMeasuresDetail',
+    component: () =>
       import('@/views/public/userMeasuresDetail.vue')
-},
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import('../views/About.vue')
-  // }
+  },
+  {
+    path: '/top',
+    name: 'top',
+    component: () =>
+      import('@/views/public/top.vue')
+  },
+  {
+    path: '/user_detail',
+    name: 'detail',
+    component: () =>
+      import('@/views/public/detail.vue')
+  },
 ]
 
 const router = new VueRouter({
