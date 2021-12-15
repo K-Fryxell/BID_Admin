@@ -157,7 +157,6 @@
                             prepend-icon="mdi-emoticon-sick"
                             label="持病"
                             hint="複数の持病をお持ちの方は句読点で区切って入力してください"
-                            :rules="chronicConditionRules"
                             required
                         />
                     </v-col>
@@ -191,12 +190,8 @@
 </template>
 
 <script>
-    import {
-        getAuth,
-        onAuthStateChanged,
-        createUserWithEmailAndPassword,
-    } from "firebase/auth"
-    import { getFirestore, collection, addDoc } from "firebase/firestore"
+    import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword} from "firebase/auth"
+    import { getDatabase, ref, set } from "firebase/database"
 
     export default {
         name: "Regist",
@@ -233,6 +228,7 @@
                 smoker: "",
                 
                 showPassword: false,
+                showAgainPassword: false,
                 // ここからルール
                 // 苗字
                 fnameRules: [
@@ -307,10 +303,24 @@
                     if (user) {
                         // User logged in already or has just logged in.
                         // ユーザーIDの取得
-                        const db = getFirestore()
-                        addDoc(collection(db, "users", user.uid, 'bid'), {
-                        email: this.mailaddress,
-                    });
+                        const db = getDatabase()
+                        set(ref(db, 'users/' + user.uid), {
+                        username: this.fname,
+                        fName: this.fname,
+                        lName: this.lname,
+                        sex: this.sex,
+                        mailaddress: this.mailaddress,
+                        password: this.password,
+                        againpassword: this.againpassword,
+                        postNumber: this.postNumber,
+                        address: this.address,
+                        tel: this.tel,
+                        height: this.height,
+                        weight: this.weight,
+                        chronicCondition: this.chronicCondition,
+                        pregnancy: this.pregnancy,
+                        smoker: this.smoker,
+                    })
                     //登録後のuser情報、セッション情報をstoreに保存
                     this.$store.commit("onAuthStateChanged", user.uid)
                     if (user.uid) {
