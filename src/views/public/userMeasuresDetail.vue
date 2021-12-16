@@ -13,7 +13,7 @@
         <div class="risk">
           <h2 class="left_line_risk">肥満</h2>
           <p>
-            見た目で肥満問分かる人はもちろん、外見は痩せていても内蔵のまわりに<br />
+            見た目で肥満と分かる人はもちろん、外見は痩せていても内蔵のまわりに
             脂肪がついている内臓脂肪型肥満の人も、発症のリスクを抱えています。
           </p>
         </div>
@@ -32,14 +32,14 @@
         <div class="measures">
           <h2 class="left_line_measures">食事</h2>
           <p>
-            タンパク質、脂質、糖質（炭水化物）、ビタミン、ミネラル、食物繊維等をバランス<br />
+            タンパク質、脂質、糖質（炭水化物）、ビタミン、ミネラル、食物繊維等をバランス
             よくとることです。飲酒も控えましょう。夜遅い食事は肥満の元です。
           </p>
         </div>
         <div class="measures">
           <h2 class="left_line_measures">運動</h2>
           <p>
-            勧められるのは有酸素運動です。これはしっかり呼吸をしながら続ける、軽いゆったり<br />
+            勧められるのは有酸素運動です。これはしっかり呼吸をしながら続ける、軽いゆったり
             とした運動です。逆に、激しい運動は心房細動のリスクにもなるので控えましょう。
           </p>
         </div>
@@ -48,9 +48,6 @@
           <p>ジギタリス製剤、カルシウム拮抗薬、β遮断薬など</p>
         </div>
       </div>
-      <a href="#">
-        <img src="..\..\assets/back.png" alt="戻るボタン" class="back"
-      /></a>
       <a href="/user_measures"
         ><img src="..\..\assets/left.png" alt="対策ページへ" class="detail"
       /></a>
@@ -76,24 +73,23 @@ li {
 }
 h1 {
   line-height: 1;
-  margin-left: 90px;
-
-  font-size: 29px;
-  margin-top: 20px;
+  margin-left: 6vw;
+  font-size: 2vw;
+  margin-top: 6vh;
+  margin-bottom: 2vh;
 }
 h2 {
-  font-size: 22px;
+  font-size: 1.1vw;
   font-weight: bold;
 }
 p {
+  font-size: 1vw;
   font-weight: bold;
 }
 .wrap {
   margin: 0;
   padding: 0;
-  padding-top: 120px;
-  /* width: 1500px;
-  height: 800px; */
+  padding-top: 10vh;
   width: 100vw;
   height: 100vh;
   background-image: url(~@/assets/haikei.png);
@@ -101,49 +97,43 @@ p {
   background-position: center center; /* 縦横中央 */
 }
 .left {
-  width: 630px;
+  width: 40vw;
   float: left;
   line-height: 2;
-  margin-left: 100px;
-  margin-top: 25px;
+  margin-left: 7vw;
+  margin-top: 1vh;
 }
 .risk {
-  margin-bottom: 12px;
-  height: 105px;
+  margin-bottom: 1.2vh;
+  height: 12.5vh;
 }
 .left_line_risk {
   border-left: thick solid #5ea99b;
-  height: 35px;
-  margin-bottom: 10px;
-  padding-left: 10px;
+  height: 4vh;
+  margin-bottom: 2vh;
+  padding-left: 2vh;
 }
 .right {
-  width: 630px;
+  width: 40vw;
   float: right;
   line-height: 2;
-  margin-top: 25px;
-  margin-right: 130px;
+  margin-top: 1vh;
+  margin-right: 7vw;
 }
 .left_line_measures {
   border-left: thick solid #dc8673;
-  height: 35px;
-  margin-bottom: 10px;
-  padding-left: 10px;
+  height: 4vh;
+  margin-bottom: 2vh;
+  padding-left: 2vh;
 }
 .measures {
-  margin-bottom: 15px;
-  height: 105px;
-}
-.back {
-  position: absolute;
-  left: 50px;
-  top: 750px;
-  width: 80px;
+  margin-bottom: 1.2vh;
+  height: 12.5vh;
 }
 .detail {
   position: absolute;
-  left: 18px;
-  top: 370px;
-  width: 30px;
+  left: 1vw;
+  top: 45vh;
+  width: 2vw;
 }
 </style>
