@@ -41,6 +41,7 @@
 
 <script>
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
+import { getDatabase, ref, set } from "firebase/database"
 export default {
   name: "Login",
   data() {
@@ -73,6 +74,12 @@ export default {
             if(user) {
               console.log(user.email)
               this.$store.commit("onAuthStateChanged", user.email)
+            
+              const db = getDatabase()
+                set(ref(db, 'monitor'), {
+                uid: user.uid,
+                heartRate: 100
+              })
             }
           })
           alert("成功");
