@@ -52,6 +52,12 @@ const routes = [
     component: () =>
       import('@/views/public/detail.vue')
   },
+  {
+    path: '/change_details',
+    name: 'changeDetails',
+    component: () =>
+      import('@/views/public/changeDetails.vue')
+  },
 ]
 
 const router = new VueRouter({
