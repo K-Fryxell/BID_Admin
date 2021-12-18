@@ -47,7 +47,7 @@ export default {
                     const postData = {
                         heartRate: 300,
                         uid: user.uid,
-                        email: this.$store.getters.user,   
+                        email: this.$store.getters.user
                     }
                     //更新テーブルの決定(複数可)
                     const updates = {}
