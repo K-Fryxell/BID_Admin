@@ -13,10 +13,14 @@ const pushMessage = (fcmToken) => ({
     token: fcmToken
 })
 
-
-exports.sendMessage = functions.database.ref('/monitor').onWrite((_snapshot) => {
+exports.sendMentions = functions.database.ref('/users/{uid}/vitalLog').onWrite((_snapshot) => {
     const token = "fvjjznqaS0KUdF8RtJ5KP1:APA91bHREEmTV0Z8ozs_Yrli0WQRqLPeSYK75b_FLA_0cZQp48frvaG8sKV3-FkbIClxlm511aoA3GuNvqGkEdisYNlkrRP5VVauQ9PS8vm1ssMiNsAJ4GiekNdiOhDLyrycQOLnxHns"
     admin.messaging().send(pushMessage(token, "プッシュ通知テスト"))
         .then((response) => { console.log('Successfully sent message:', response) })
         .catch((e) => { console.log('Error sending message:', e) })
+})
+
+exports.sendMails = functions.database.ref('/monitor').onWrite((snapshot) => {
+    functions.logger.log(snapshot.after.data())
+    return
 })
