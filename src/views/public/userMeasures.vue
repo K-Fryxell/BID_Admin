@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-content>
     <Header/>
     <div class="wrap">
       <h1><strong>心房細動</strong>の可能性があります</h1>
@@ -40,7 +40,7 @@
         <img src="..\..\assets/back.png" alt="戻るボタン" class="back"
       /></a>
     </div>
-  </v-container>
+  </v-content>
 </template>
 
 <style scoped lang="css">
@@ -140,17 +140,17 @@ ul {
 </style>
 
 <script>
-import Header from '@/components/public/Header.vue'
+  import Header from '@/components/public/Header.vue'
 
-export default {
-    name: 'UserMeasurs',
-    components: {
-      Header
-    },
-    data () {
-        return {
-            
-        }
-    },
-}
+  export default {
+      name: 'userMeasurs',
+      components: {
+        Header
+      },
+      data () {
+          return {
+              
+          }
+      },
+  }
 </script>

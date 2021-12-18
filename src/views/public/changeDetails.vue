@@ -100,15 +100,11 @@
 </template>
 
 <script>
-    import {
-        getAuth,
-        onAuthStateChanged,
-        createUserWithEmailAndPassword,
-    } from "firebase/auth"
-    import { getFirestore, collection, addDoc } from "firebase/firestore"
-
+    import { getAuth, onAuthStateChanged } from "firebase/auth"
+    import { getDatabase, ref, child, get } from "firebase/database"
     export default {
-        name: "Regist",
+
+        name: "changeDetails",
         data() {
             return {
                 valid: true,
@@ -151,44 +147,34 @@
         },
         components: {},
         methods: {
-            regist() {
-                createUserWithEmailAndPassword(getAuth(), this.mailaddress, this.password)
-                .then(() => {
-                console.log("user created");
-                alert("success! user created")
+            getUsersDB(){
                 onAuthStateChanged(getAuth(), (user) => {
                     if (user) {
-                        // User logged in already or has just logged in.
-                        // ユーザーIDの取得
-                        const db = getFirestore()
-                        addDoc(collection(db, "users", user.uid, 'bid'), {
-                        email: this.mailaddress,
-                    });
-                    //登録後のuser情報、セッション情報をstoreに保存
-                    this.$store.commit("onAuthStateChanged", user.uid)
-                    if (user.uid) {
-                        //セッション情報をログイン状態に
-                        this.$store.commit("onUserLoginStatusChanged", true)
-                        //データベース参照用uid
-                        console.log(this.$store.getters.user)
-                        //セッション確認用フラグ
-                        console.log(this.$store.getters.isLoggedIn)
-                    } else {
-                        console.log("ユーザ情報取得に失敗")
+                        const dbRef = ref(getDatabase());
+                        get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            console.log(snapshot.val())
+                            this.mailaddress = snapshot.val().mailaddress
+                            this.postNumber = snapshot.val().postNumber
+                            this.address = snapshot.val().address
+                            this.tel = snapshot.val().tel
+                            this.password = snapshot.val().password
+                            this.againpassword = snapshot.val().againpassword
+                        } else {
+                            console.log("No data available")
+                        }
+                        }).catch((error) => {
+                            console.error(error)
+                        })
                     }
-                    }
-                })
-                })
-                .catch((error) => {
-                    alert(error.message)
-                    console.error(error)
-                    alert("error!")
                 })
             },
         },
         computed: {
 
         },
-        created() {},
+        created() {
+            this.getUsersDB()
+        },
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-content>
     <Header/>
     <div class="wrap">
       <h1>心房細動の<br /><strong>リスクと対策</strong></h1>
@@ -56,8 +56,24 @@
         ><img src="..\..\assets/left.png" alt="対策ページへ" class="detail"
       /></a>
     </div>
-  </v-container>
+  </v-content>
 </template>
+
+<script>
+  import Header from '@/components/public/Header.vue'
+  export default {
+      name: 'userMeasuresDetail',
+      components: {
+        Header
+      },
+      data () {
+          return {
+              
+          }
+      },
+  }
+</script>
+
 <style scoped lang="css">
 /* リセット */
 body,
@@ -149,17 +165,3 @@ p {
 }
 </style>
 
-<script>
-import Header from '@/components/public/Header.vue'
-export default {
-    name: 'userMeasuresDetail',
-    components: {
-      Header
-    },
-    data () {
-        return {
-            
-        }
-    },
-}
-</script>
