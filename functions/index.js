@@ -23,8 +23,7 @@ exports.sendMentions = functions.database.ref('/users/{uid}/vitalLog').onWrite((
 exports.sendMails = functions.database.ref('/monitor').onWrite((snapshot) => {
     functions.logger.log(snapshot.after.data())
     const g = snapshot.after.data().heartRate
-    if(g <= 30){
-        // メール送信処理
+    if (g <= 30) {
+        console.log('heart rate is under 30')
     }
-    return
 })
