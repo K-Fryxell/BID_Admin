@@ -24,6 +24,13 @@ exports.sendMails = functions.database.ref('/monitor').onWrite((snapshot) => {
     functions.logger.log(snapshot.after.data())
     const g = snapshot.after.data().heartRate
     if (g <= 30) {
-        console.log('heart rate is under 30')
+        axios.get('http://localhost:8000/mail/?recipient=???@gmail.com&abnormal_num=0&detail_num=0')
+            .then(function (response) {
+                alert(response)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+        //???gmail.comの値は各々で受信したいメールアドレスを入力して下さい
     }
 })
