@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>メソッド検証ページ</h1>
         <v-btn @click="getUsersDB">読み取り(ログ出力)</v-btn>
         <v-btn @click="updateHeartRateDB">hertRate更新(onUpdate発火)</v-btn>
         <p>{{ username }}</p>
