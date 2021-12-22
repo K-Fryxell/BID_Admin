@@ -123,66 +123,6 @@
                         />
                     </v-col>
                 </v-row>
-                <!-- 身長入力 -->
-                <v-row class="ma-0 pa-0">
-                    <v-col>
-                        <v-text-field
-                            v-model="height"
-                            class="ma-0 pa-0 pb-6"
-                            prepend-icon="mdi-human-male-height-variant"
-                            :rules="heightRules"
-                            label="身長（cm）"
-                            required/>
-                    </v-col>
-                </v-row>
-                <!-- 体重入力 -->
-                <v-row class="ma-0 pa-0">
-                    <v-col>
-                        <v-text-field
-                            v-model="weight"
-                            class="ma-0 pa-0 pb-6"
-                            prepend-icon="mdi-weight-kilogram"
-                            label="体重（kg）"
-                            :rules="weightRules"
-                            required
-                        />
-                    </v-col>
-                </v-row>
-                <!-- 持病入力 -->
-                <v-row class="ma-0 pa-0">
-                    <v-col>
-                        <v-text-field
-                            v-model="chronicCondition"
-                            class="ma-0 pa-0 pb-6"
-                            prepend-icon="mdi-emoticon-sick"
-                            label="持病"
-                            hint="複数の持病をお持ちの方は句読点で区切って入力してください"
-                            required
-                        />
-                    </v-col>
-                </v-row>
-                <!-- 妊娠情報入力 -->
-                <v-row class="ma-0 pa-0">
-                    <v-col cols="12" lg="12">
-                        <v-radio-group
-                            prepend-icon="mdi-human-pregnant"
-                            v-model="pregnancy" :mandatory="false" row>
-                            <v-radio label="妊娠している"/>
-                            <v-radio label="妊娠していない"/>
-                        </v-radio-group>
-                    </v-col>
-                </v-row>
-                <!-- 喫煙情報入力 -->
-                <v-row class="ma-0 pa-0">
-                    <v-col cols="12" lg="12">
-                        <v-radio-group
-                            prepend-icon="mdi-smoking"
-                            v-model="smoker" :mandatory="false" row>
-                            <v-radio label="喫煙者"/>
-                            <v-radio label="非喫煙者"/>
-                        </v-radio-group>
-                    </v-col>
-                </v-row>
                 <v-btn @click="regist" :disabled="!valid">送信</v-btn>
             </v-form>
         </v-card-text>
@@ -216,20 +156,23 @@
                 address: "",
                 // 電話番号
                 tel: "",
-                // 身長
-                height: "",
-                // 体重
-                weight: "",
-                // 持病
-                chronicCondition: "",
-                // 妊娠
-                pregnancy: "",
-                // 喫煙
-                smoker: "",
-                
+
+                // 入力しない項目(DBとしては存在しないとダメ)
+                bodyTemperature: Number,
+                bloodPressureMax: Number,
+                bloodPressureMin: Number,
+                heartRate: Number,
+                consciousnessLevel: "",
+                dopamine: Number,
+                serotonin: Number,
+                latitude: Number,
+                longitude: Number,
+
+                // パスワード再入力フラグ
                 showPassword: false,
                 showAgainPassword: false,
-                // ここからルール
+
+                /////*****   ここからルール    *****/////
                 // 苗字
                 fnameRules: [
                     v => !!v || '入力欄が空白です。',
@@ -279,17 +222,7 @@
                     v => !!v || '入力欄が空白です。',
                     v => /[\d]$/.test(v)  ||'半角数字で入力してください。',
                     v => /^0[789]0-[0-9]{4}-[0-9]{4}$/.test(v) || '電話番号の形式が違います'
-                ],
-                // 身長
-                heightRules: [
-                v => !!v || '入力欄が空白です。',
-                v => /[\d]$/.test(v)  ||'半角数字で入力してください。',
-                ],
-                // 体重
-                weightRules: [
-                    v => !!v || '入力欄が空白です。',
-                    v => /[\d]$/.test(v)  ||'半角数字で入力してください。',
-                ],
+                ]
             }
         },
         components: {},
@@ -305,21 +238,23 @@
                         // ユーザーIDの取得
                         const db = getDatabase()
                         set(ref(db, 'users/' + user.uid), {
-                        username: this.fname,
-                        fName: this.fname,
-                        lName: this.lname,
-                        sex: this.sex,
-                        mailaddress: this.mailaddress,
-                        password: this.password,
-                        againpassword: this.againpassword,
-                        postNumber: this.postNumber,
-                        address: this.address,
-                        tel: this.tel,
-                        height: this.height,
-                        weight: this.weight,
-                        chronicCondition: this.chronicCondition,
-                        pregnancy: this.pregnancy,
-                        smoker: this.smoker,
+                        f_name: this.fname,                             // 苗字
+                        l_name: this.lname,                             // 名前
+                        sex: this.sex,                                  // 性別
+                        email: this.mailaddress,                        // メールアドレス
+                        password: this.password,                        // パスワード *最終的にDBには入れない*
+                        post_number: this.postNumber,                   // 郵便番号
+                        address: this.address,                          // 住所
+                        tel: this.tel,                                  // 電話番号
+                        consciousness_level: this.consciousnessLevel,  // 意識レベル
+                        body_temperature: this.bodyTemperature,         // 体温
+                        blood_pressure_max: this.bloodPressureMax,      // 最高血圧
+                        blood_pressure_min: this.bloodPressureMin,      // 最低血圧
+                        heart_rate: this.heartRate,                     // 心拍数
+                        dopamine: this.dopamine,                        // ドーパミン値
+                        serotonin: this.serotonin,                      // セロトニン値
+                        latitude: this.latitude,                        // 緯度
+                        longitude: this.longitude                       // 経度
                     })
                     //登録後のuser情報、セッション情報をstoreに保存
                     this.$store.commit("onAuthStateChanged", user.uid)
@@ -342,9 +277,22 @@
                     alert("error!")
                 })
             },
+            statusDecision(){
+                this.consciousnessLevel = "0"
+                this.bodyTemperature = Math.round((Math.random()*3+35.5)*10)/10
+                this.bloodPressureMax = Math.floor(Math.random()*20)+155
+                this.bloodPressureMin = Math.floor(Math.random()*20)+110
+                this.heartRate = Math.floor(Math.random()*30)+70
+                this.dopamine = Math.floor(Math.random()*40)+80
+                this.serotonin = Math.floor(Math.random()*40)+80
+                this.latitude = 0
+                this.longitude = 0
+            }
         },
         computed: {
         },
-        created() {},
+        created() {
+            this.statusDecision()
+        },
     }
 </script>
