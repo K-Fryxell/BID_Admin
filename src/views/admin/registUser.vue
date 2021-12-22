@@ -228,50 +228,55 @@
         components: {},
         methods: {
             regist() {
-            createUserWithEmailAndPassword(getAuth(), this.mailaddress, this.password)
-                .then(() => {
-                console.log("user created");
-                alert("success! user created")
-                onAuthStateChanged(getAuth(), (user) => {
-                    if (user) {
-                        // User logged in already or has just logged in.
-                        // ユーザーIDの取得
-                        const db = getDatabase()
-                        set(ref(db, 'users/' + user.uid), {
-                        f_name: this.fname,                             // 苗字
-                        l_name: this.lname,                             // 名前
-                        sex: this.sex,                                  // 性別
-                        email: this.mailaddress,                        // メールアドレス
-                        password: this.password,                        // パスワード *最終的にDBには入れない*
-                        post_number: this.postNumber,                   // 郵便番号
-                        address: this.address,                          // 住所
-                        tel: this.tel,                                  // 電話番号
-                        consciousness_level: this.consciousnessLevel,  // 意識レベル
-                        body_temperature: this.bodyTemperature,         // 体温
-                        blood_pressure_max: this.bloodPressureMax,      // 最高血圧
-                        blood_pressure_min: this.bloodPressureMin,      // 最低血圧
-                        heart_rate: this.heartRate,                     // 心拍数
-                        dopamine: this.dopamine,                        // ドーパミン値
-                        serotonin: this.serotonin,                      // セロトニン値
-                        latitude: this.latitude,                        // 緯度
-                        longitude: this.longitude                       // 経度
+                createUserWithEmailAndPassword(getAuth(), this.mailaddress, this.password).then(() => {
+                    console.log("user created");
+                    alert("success! user created")
+                    onAuthStateChanged(getAuth(), (user) => {
+                        if (user) {
+                            // User logged in already or has just logged in.
+                            // ユーザーIDの取得
+                            const db = getDatabase()
+                            if(this.sex == "0"){
+                                this.sex = "男性"
+                            }
+                            else{
+                                this.sex = "女性"
+                            }
+                            set(ref(db, 'users/' + user.uid), {
+                                f_name: this.fname,                             // 苗字
+                                l_name: this.lname,                             // 名前
+                                sex: this.sex,                                  // 性別
+                                email: this.mailaddress,                        // メールアドレス
+                                password: this.password,                        // パスワード *最終的にDBには入れない*
+                                post_number: this.postNumber,                   // 郵便番号
+                                address: this.address,                          // 住所
+                                tel: this.tel,                                  // 電話番号
+                                consciousness_level: this.consciousnessLevel,  // 意識レベル
+                                body_temperature: this.bodyTemperature,         // 体温
+                                blood_pressure_max: this.bloodPressureMax,      // 最高血圧
+                                blood_pressure_min: this.bloodPressureMin,      // 最低血圧
+                                heart_rate: this.heartRate,                     // 心拍数
+                                dopamine: this.dopamine,                        // ドーパミン値
+                                serotonin: this.serotonin,                      // セロトニン値
+                                latitude: this.latitude,                        // 緯度
+                                longitude: this.longitude                       // 経度
+                            })
+                            //登録後のuser情報、セッション情報をstoreに保存
+                            this.$store.commit("onAuthStateChanged", user.uid)
+                            if (user.uid) {
+                                //セッション情報をログイン状態に
+                                this.$store.commit("onUserLoginStatusChanged", true)
+                                //データベース参照用uid
+                                console.log(this.$store.getters.user)
+                                //セッション確認用フラグ
+                                console.log(this.$store.getters.isLoggedIn)
+                            }
+                            else {
+                                console.log("ユーザ情報取得に失敗")
+                            }
+                        }
                     })
-                    //登録後のuser情報、セッション情報をstoreに保存
-                    this.$store.commit("onAuthStateChanged", user.uid)
-                    if (user.uid) {
-                        //セッション情報をログイン状態に
-                        this.$store.commit("onUserLoginStatusChanged", true)
-                        //データベース参照用uid
-                        console.log(this.$store.getters.user)
-                        //セッション確認用フラグ
-                        console.log(this.$store.getters.isLoggedIn)
-                    } else {
-                        console.log("ユーザ情報取得に失敗")
-                    }
-                    }
-                })
-                })
-                .catch((error) => {
+                }).catch((error) => {
                     alert(error.message)
                     console.error(error)
                     alert("error!")
@@ -285,8 +290,8 @@
                 this.heartRate = Math.floor(Math.random()*30)+70
                 this.dopamine = Math.floor(Math.random()*40)+80
                 this.serotonin = Math.floor(Math.random()*40)+80
-                this.latitude = 0
-                this.longitude = 0
+                this.latitude = 35.413071
+                this.longitude = 139.414895
             }
         },
         computed: {
