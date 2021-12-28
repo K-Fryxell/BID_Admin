@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-content>
     <Header/>
     <div class="wrap">
       <h1><strong>心房細動</strong>の可能性があります</h1>
@@ -37,7 +37,7 @@
         ><img src="..\..\assets/right.png" alt="詳細ページへ" class="detail"
       /></a>
     </div>
-  </v-container>
+  </v-content>
 </template>
 
 <style scoped lang="css">

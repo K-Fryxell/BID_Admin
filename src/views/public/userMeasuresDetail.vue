@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-content>
     <Header/>
     <div class="wrap">
       <h1>心房細動の<br /><strong>リスクと対策</strong></h1>
@@ -53,7 +53,7 @@
         ><img src="..\..\assets/left.png" alt="対策ページへ" class="detail"
       /></a>
     </div>
-  </v-container>
+  </v-content>
 </template>
 <style scoped lang="css">
 /* リセット */
