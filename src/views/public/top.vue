@@ -1,5 +1,6 @@
 <template>
-    <v-container>
+    <v-content>
+        <Header/>
         <div class="wrap">
             <strong>36.7{{temperature}}</strong>
             <div class="border border-solid">最近血圧が高いようです。1週間に2回は魚を食べましょう。緊急性がある場合は、「すぐ病院へ」。</div>
@@ -66,8 +67,24 @@
         </div>
 
         
-    </v-container>
+    </v-content>
 </template>
+
+<script>
+  import Header from '@/components/public/Header.vue'
+
+  export default {
+      name: 'top',
+      components: {
+        Header
+      },
+      data () {
+          return {
+              
+          }
+      },
+  }
+</script>
 
 
 <style scoped lang="css">

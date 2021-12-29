@@ -53,7 +53,7 @@ const routes = [
       import('@/views/public/detail.vue')
   },
   {
-    path: '/user_changeDetails',
+    path: '/change_details',
     name: 'changeDetails',
     component: () =>
       import('@/views/public/changeDetails.vue')

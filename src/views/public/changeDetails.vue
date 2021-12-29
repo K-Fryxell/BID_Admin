@@ -1,7 +1,7 @@
 <template>
     <v-card width="450px" class="mx-auto mt-2">
         <v-card-title>
-            <h1 class="display-1">ユーザ情報登録変更</h1>
+            <h1 class="display-1">プロフィール変更</h1>
         </v-card-title>
         <v-card-text>
             <v-form v-model="valid">
@@ -20,7 +20,6 @@
                         />
                     </v-col>
                 </v-row>
-                
                 <!-- 郵便番号入力 -->
                 <v-row class="ma-0 pa-0">
                     <v-col>
