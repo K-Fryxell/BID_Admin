@@ -251,7 +251,7 @@
                                 post_number: this.postNumber,                   // 郵便番号
                                 address: this.address,                          // 住所
                                 tel: this.tel,                                  // 電話番号
-                                consciousness_level: this.consciousnessLevel,  // 意識レベル
+                                consciousness_level: this.consciousnessLevel,   // 意識レベル
                                 body_temperature: this.bodyTemperature,         // 体温
                                 blood_pressure_max: this.bloodPressureMax,      // 最高血圧
                                 blood_pressure_min: this.bloodPressureMin,      // 最低血圧
