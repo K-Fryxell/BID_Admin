@@ -4,7 +4,7 @@
             <v-toolbar-title class="ma-0 pa-0 pt-3">
                 <router-link to="top">
                     <!--ロゴ <img> -->
-                    <img height="50" src="@/assets/logo.png">
+                    <img height="50" src="@/assets/logo1.png">
                 </router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>

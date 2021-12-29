@@ -136,17 +136,17 @@ ul {
 </style>
 
 <script>
-import Header from '@/components/public/Header.vue'
+  import Header from '@/components/public/Header.vue'
 
-export default {
-    name: 'UserMeasurs',
-    components: {
-      Header
-    },
-    data () {
-        return {
-            
-        }
-    },
-}
+  export default {
+      name: 'userMeasurs',
+      components: {
+        Header
+      },
+      data () {
+          return {
+              
+          }
+      },
+  }
 </script>

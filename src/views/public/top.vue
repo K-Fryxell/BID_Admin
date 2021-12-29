@@ -70,6 +70,22 @@
     </v-content>
 </template>
 
+<script>
+  import Header from '@/components/public/Header.vue'
+
+  export default {
+      name: 'top',
+      components: {
+        Header
+      },
+      data () {
+          return {
+              
+          }
+      },
+  }
+</script>
+
 
 <style scoped lang="css">
     /* リセット */

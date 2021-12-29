@@ -55,6 +55,22 @@
     </div>
   </v-content>
 </template>
+
+<script>
+  import Header from '@/components/public/Header.vue'
+  export default {
+      name: 'userMeasuresDetail',
+      components: {
+        Header
+      },
+      data () {
+          return {
+              
+          }
+      },
+  }
+</script>
+
 <style scoped lang="css">
 /* リセット */
 body,
@@ -139,17 +155,3 @@ p {
 }
 </style>
 
-<script>
-import Header from '@/components/public/Header.vue'
-export default {
-    name: 'userMeasuresDetail',
-    components: {
-      Header
-    },
-    data () {
-        return {
-            
-        }
-    },
-}
-</script>
