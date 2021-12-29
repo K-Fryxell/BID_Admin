@@ -36,9 +36,6 @@
       <a href="/user_measuresDetail"
         ><img src="..\..\assets/right.png" alt="詳細ページへ" class="detail"
       /></a>
-      <a href="#">
-        <img src="..\..\assets/back.png" alt="戻るボタン" class="back"
-      /></a>
     </div>
   </v-content>
 </template>
@@ -56,7 +53,6 @@ li {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 }
@@ -64,9 +60,6 @@ li {
 .wrap {
   margin: 0;
   padding: 0;
-  padding-top: 150px;
-  /* width: 1500px;
-        height: 800px; */
   width: 100vw;
   height: 100vh;
   background-image: url(~@/assets/haikei.png);
@@ -76,66 +69,69 @@ li {
 h1 {
   text-decoration: underline;
   font-weight: 600;
-  font-size: 35px;
-  margin-left: 510px;
-  margin-bottom: 40px;
+  font-size: 2vw;
+  margin-left: 35vw;
+  margin-bottom: 2vh;
+  padding-top: 20vh;
 }
 strong {
   color: #d12727;
 }
 p {
+  font-size: 1vw;
   font-weight: bold;
-  margin-left: 200px;
+  margin-left: 15vw;
 }
 .box {
-  width: 800px;
-  height: 200px;
+  width: 58vw;
+  height: 28vh;
   border: solid 3px;
   background: #fdf2f9;
-  margin-left: 350px;
-  margin-top: 20px;
-  margin-bottom: 60px;
-  padding-top: 12px;
+  margin-left: 23vw;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+  padding-top: 2vh;
 }
 a {
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1.1vw;
   font-weight: bold;
 }
 ul {
-  margin-left: 30px;
-  font-size: 20px;
+  padding-top: 2vh;
+  padding-left: 4vw;
+  font-size: 1.3vw;
   line-height: 2;
 }
 .left {
-  width: 400px;
+  width: 30vw;
   float: left;
   line-height: 2;
-  margin-left: 280px;
-  margin-top: 15px;
+  margin-left: 20vw;
+  margin-top: 1vh;
 }
 .right {
-  width: 400px;
+  width: 30vw;
   float: right;
   line-height: 2;
-  margin-top: 15px;
-  margin-right: 240px;
+  margin-top: 1vh;
+  margin-right: 15vw;
 }
 .item {
-  width: 22px;
-  margin-right: 5px;
+  width: 2vw;
+  margin-right: 1vw;
 }
 .detail {
   position: absolute;
-  right: 18px;
-  top: 370px;
-  width: 30px;
+  right: 1vw;
+  top: 40vh;
+  width: 2vw;
 }
 .back {
-  position: absolute;
-  left: 50px;
-  top: 750px;
-  width: 80px;
+  position: relative;
+  left: 3vw;
+  top: 15vh;
+  width: 6vw;
 }
 </style>
 
