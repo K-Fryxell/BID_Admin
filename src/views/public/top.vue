@@ -195,3 +195,17 @@
 
 </style>
 
+<script>
+import Header from '@/components/public/Header.vue'
+export default {
+    name: 'top',
+    components: {
+      Header
+    },
+    data () {
+        return {
+            
+        }
+    },
+}
+</script>
