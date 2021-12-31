@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-btn @click="getUsersDB">読み取り(ログ出力)</v-btn>
-        <v-btn @click="updateHeartRateDB">hertRate更新(onUpdate発火)</v-btn>
+        <h1>メソッド検証ページ</h1>
+        <v-btn @click="updateHeartRateDB">更新(onUpdate発火)</v-btn>
         <p>{{ username }}</p>
     </div>
 </template>
@@ -40,21 +40,25 @@ export default {
             })
         },
         updateHeartRateDB(){
-            const db = getDatabase()
-
-            //更新内容を設定
-            const postData = {
-                heartRate: 10,
-                uid: this.$store.getters.user,
-            }
-            //更新テーブルの決定(複数可)
-            const updates = {}
-            updates['/monitor/'] = postData
-            //設定した内容でアップデート
-            update(ref(db), updates).then(() => {
-                console.log('update success')
-            }).catch((error) => {
-                console.log('update failed\n' + error)
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    const db = getDatabase()
+                    //更新内容を設定
+                    const postData = {
+                        heartRate: 300,
+                        uid: user.uid,
+                        email: this.$store.getters.user
+                    }
+                    //更新テーブルの決定(複数可)
+                    const updates = {}
+                    updates['/monitor/'] = postData
+                    //設定した内容でアップデート
+                    update(ref(db), updates).then(() => {
+                        console.log('update success')
+                    }).catch((error) => {
+                        console.log('update failed\n' + error)
+                    })
+                }
             })
         }
     },

@@ -22,15 +22,16 @@ exports.sendMentions = functions.database.ref('/users/{uid}/vitalLog').onWrite((
 
 exports.sendMails = functions.database.ref('/monitor').onWrite((snapshot) => {
     functions.logger.log(snapshot.after.data())
-    const g = snapshot.after.data().heartRate
+    const g = snapshot.after.val().heartRate
     if (g <= 30) {
-        axios.get('http://localhost:8000/mail/?recipient=???@gmail.com&abnormal_num=0&detail_num=0')
-            .then(function (response) {
-                alert(response)
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-        //???gmail.comの値は各々で受信したいメールアドレスを入力して下さい
+        // メール送信処理
+
+        // ログ
+        functions.logger.log("異常値")
+        functions.logger.log(snapshot.after.val().heartRate)
+    }
+    else {
+        //ログ
+        functions.logger.log("正常値")
     }
 })
