@@ -60,6 +60,7 @@ export default {
     },
     created:function(){
         this.getUsersDB()
+        alert(globalThis)
     }
 }
 </script>
