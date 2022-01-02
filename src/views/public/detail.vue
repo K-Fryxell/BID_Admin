@@ -8,7 +8,7 @@
     vertical>
       <v-tab
       v-for="(item, idx) in items"
-      :key="`first-${idx}`">
+      :key="`navi_vertical-${idx}`">
         <v-icon left>
           {{item.icon}}
         </v-icon>
@@ -17,7 +17,7 @@
 
       <v-tab-item
       v-for="(item, idx) in items"
-      :key="`second-${idx}`"
+      :key="`content_vertical-${idx}`"
       height="100px">
         <v-card flat>
           <v-card-text>
@@ -41,7 +41,7 @@
         >
           <v-tab
             v-for="item in items"
-            :key="`third-${item.navi}`"
+            :key="`navi_arrows-${item.navi}`"
           >
             {{ item.navi }}
           </v-tab>
@@ -50,7 +50,7 @@
     <v-tabs-items v-model="tab">
       <v-tab-item
         v-for="item in items"
-        :key="`forth-${item.content}`"
+        :key="`content_arrows-${item.content}`"
         eager
         height="100px"
       >
