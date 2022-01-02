@@ -21,8 +21,9 @@ exports.sendMentions = functions.database.ref('/users/{uid}/vitalLog').onWrite((
 })
 
 exports.sendMails = functions.database.ref('/monitor').onWrite((snapshot) => {
+    functions.logger.log(snapshot.after.data())
     const g = snapshot.after.val().heartRate
-    if(g <= 30){
+    if (g <= 30) {
         // メール送信処理
 
         // ログ
@@ -33,5 +34,4 @@ exports.sendMails = functions.database.ref('/monitor').onWrite((snapshot) => {
         //ログ
         functions.logger.log("正常値")
     }
-    return
 })
