@@ -9,13 +9,8 @@
                         <v-row class="ma-0 pa-0 px-8">
                             <v-col class="ma-0 px-12 pa-0">
                                 <v-card class="ma-0 pa-0" justify="center" elevation="0" v-resize='onResize' :height='card_height' :width='card_width'>
-                                    <v-row class="ma-0 pa-0" justify="center">
-                                        <img v-resize='onResize' :width='img_width' src="">
-                                    </v-row>
-                                    <v-row class="ma-0 pa-0">
-                                        <v-card-text class="ma-0 pa-0 text-center font-weight-bold">
-                                            画像挿入位置    
-                                        </v-card-text>
+                                    <v-row class="ma-0 pa-0" justify="center" style="background-color: #E5ECE6">
+                                        <img v-resize='onResize' :width='img_width' src="../../assets/human.png">
                                     </v-row>
                                 </v-card>
                             </v-col>
@@ -39,7 +34,7 @@ export default {
         return {
             card_height: Number,
             card_width: Number,
-            img_width: Number
+            img_width: 360
         }
     },
     methods: {
