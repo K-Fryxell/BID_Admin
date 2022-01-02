@@ -35,12 +35,6 @@ const routes = [
       import('@/views/public/userMeasures.vue')
   },
   {
-    path: '/user_measuresDetail',
-    name: 'userMeasuresDetail',
-    component: () =>
-      import('@/views/public/userMeasuresDetail.vue')
-  },
-  {
     path: '/top',
     name: 'top',
     component: () =>
