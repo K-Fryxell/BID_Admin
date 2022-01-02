@@ -36,7 +36,7 @@ export default {
             borderColor: '#CFD8DC',
             fill: false,
             type: 'line',
-            lineTension: 0.3,
+            lineTension: 0,
           }
         ]
       },

@@ -21,7 +21,6 @@
       height="100px">
         <v-card flat>
           <v-card-text>
-          {{ item.content }}
           <BarChart />
           </v-card-text>
         </v-card>
@@ -32,7 +31,9 @@
   <v-card 
     show-arrows
     background-color="primary"
-    class="d-block d-sm-none">
+    class="d-block d-sm-none"
+    style="height:40%"
+    >
         <v-tabs
           centered
           v-model="tab"
@@ -52,11 +53,12 @@
         v-for="item in items"
         :key="`content_arrows-${item.content}`"
         eager
-        height="100px"
       >
         <v-card flat>
           <v-card-text>
-           <BarChart />
+           <div style="height:40%">
+              <BarChart />
+           </div>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -75,11 +77,11 @@ export default {
         return {
         tab: null,
         items: [
-            { navi: '　　体温　', icon: 'mdi-thermometer', content: 'aa'},
-            { navi: '　　血圧　', icon: 'mdi-ray-vertex', content: 'ii'},
-            { navi: '　心拍数　', icon: 'mdi-heart-pulse', content: 'uu'},
-            { navi: 'ドーパミン', icon: 'mdi-head-snowflake-outline', content: 'ee'},
-            { navi: 'セロトニン', icon: 'mdi-head-heart-outline', content: 'oo'},
+            { navi: '　　体温　', icon: 'mdi-thermometer'},
+            { navi: '　　血圧　', icon: 'mdi-ray-vertex'},
+            { navi: '　心拍数　', icon: 'mdi-heart-pulse'},
+            { navi: 'ドーパミン', icon: 'mdi-head-snowflake-outline'},
+            { navi: 'セロトニン', icon: 'mdi-head-heart-outline'},
         ],
         }
     },
