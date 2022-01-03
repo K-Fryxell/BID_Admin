@@ -1,6 +1,10 @@
 <template>
-    <v-card class="ma-0 pa-0 ma-0 pa-0 pt-2 pb-2" style="background-color: #fff" tile elevation="0">
-        <v-toolbar class="ma-0 pa-0" elevation="0" dense flat style="background-color: #fff">
+    <v-card class="ma-0 pa-0 ma-0 pa-0" style="background-color: #fff" tile elevation="0">
+        <v-toolbar class="ma-0 pa-0" dense elevation="0" flat height="90px"
+        style="background-color: #fff;
+        border-style: solid;
+        border-color: #fff #fff #000 #fff;
+        border-width: 0px 0px 15px 0px;">
             <v-toolbar-title class="ma-0 pa-0 pt-3">
                 <router-link to="top">
                     <!--ロゴ <img> -->

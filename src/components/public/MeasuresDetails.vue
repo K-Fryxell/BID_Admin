@@ -49,9 +49,6 @@
           <p>ジギタリス製剤、カルシウム拮抗薬、β遮断薬など</p>
         </div>
       </div>
-      <a href="/user_measures"
-        ><img src="..\..\assets/left.png" alt="対策ページへ" class="detail"
-      /></a>
     </div>
   </v-content>
 </template>
