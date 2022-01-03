@@ -21,7 +21,7 @@
       height="100px">
         <v-card flat>
           <v-card-text>
-          <BarChart />
+          <BloodPressureChart />
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -69,7 +69,8 @@
 
 <script>
 import Header from '@/components/public/Header'
-import BarChart from '@/components/chart/BarChart'
+import BarChart from '@/components/chart/BodyTemperatureChart'
+import BloodPressureChart from '@/components/chart/BloodPressureChart'
 
 export default {
     name: "Detail",
@@ -87,7 +88,8 @@ export default {
     },
     components: {
         Header,
-        BarChart
+        BarChart,
+        BloodPressureChart
     },
     methods: {  
     },
