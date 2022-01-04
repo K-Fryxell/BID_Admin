@@ -1,11 +1,11 @@
 <template>
-    <v-content class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5);"><!-- 背景グラデーション -->
+    <v-content class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5); height:100%"><!-- 背景グラデーション -->
         <!-- pcヘッダー -->
 		<v-navigation-drawer class="ma-0 pa-0 hidden-sm-and-down" fixed height style="width:100%;" permanent>
 			<Header/>
 		</v-navigation-drawer>
 		<!-- 携帯ヘッダー -->
-		<v-navigation-drawer class="ma-0 pa-0 hidden-md-and-up" fixed height style="width:100%; height:70px;" permanent>
+		<v-navigation-drawer class="ma-0 pa-0 hidden-md-and-up" fixed height style="width:100%;" permanent>
 			<Header/>
 		</v-navigation-drawer>
 

@@ -1,26 +1,27 @@
 <template>
     <v-card class="ma-0 pa-0 ma-0 pa-0" style="background-color: #fff" tile elevation="0">
-        <v-toolbar class="ma-0 pa-0" dense elevation="0" flat height="90px"
+        <v-toolbar class="ma-0 pa-0" dense elevation="0" flat height="70px"
         style="background-color: #fff;
         border-style: solid;
         border-color: #fff #fff #000 #fff;
         border-width: 0px 0px 15px 0px;">
-            <v-toolbar-title class="ma-0 pa-0 pt-3">
+            <v-toolbar-title class="ma-0 pa-0 pt-0">
                 <router-link to="top">
                     <!--ロゴ <img> -->
-                    <img height="50" src="@/assets/logo1.png">
+                    <img height="35px" src="@/assets/logo1.png">
                 </router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-menu bottom left>
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
+                        class="ma-0 pa-0"
                         color="green"
                         icon
                         v-bind="attrs"
                         v-on="on"
                     >
-                        <v-icon class="ma-0 pa-0" x-large style="color: #83B590">mdi-microsoft-xbox-controller-menu</v-icon>
+                        <v-icon class="ma-0 pa-0 pb-2" x-large style="color: #83B590">mdi-microsoft-xbox-controller-menu</v-icon>
                     </v-btn>
                 </template>
                 <v-list>
