@@ -3,7 +3,7 @@ import { Bar } from 'vue-chartjs'
 
 export default {
     extends: Bar,
-    name: 'BloodPressure',
+    name: 'Dopamine',
     data () {
         return {
 
