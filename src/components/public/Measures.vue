@@ -4,11 +4,11 @@
         <v-container class="ma-0 pa-0" fluid>
             <v-layout class="ma-0 mt-8 pa-0" column>
                 <v-row class="ma-4 mt-12 pa-0 pt-12" justify="center">
-                    <v-card-title class="display-1 pt-12" style="text-decoration:underline; text-decoration-color:#808080;">
+                    <v-card-title class="display-1 pt-6" style="text-decoration-color:#808080;">
                         <strong class="display-2" style="color:red;">心房細動</strong>の可能性があります
                     </v-card-title>
                 </v-row>
-                <v-row class="ma-4 mt-12 pa-0 pt-1" justify="center">
+                <v-row class="ma-4 mt-3 pa-0 pt-1" justify="center">
                     <v-flex class="ma-0 pa-0" lg7>
                         <!-- 症状例 -->
                         <v-row class="ml-n12 pa-0">
@@ -29,20 +29,19 @@
                                 <strong>推奨病院</strong>
                             </v-card-title>
                         </v-row>
-                        <v-row class="ma-0 pa-0">
-                            <v-list-item
+                        <v-row class="ma-0 pa-0 d-flex flex-wrap">
+                            <v-col 
                             v-for="(item, i) in items"
                             :key="i"
-                            >
-                                <v-col lg="6" class="red ma-0">
+                            :cols="6">
+                                <v-col class="ma-0 d-flex flex-row">
                                     <img src="@/assets/item.png" alt="項目"/>
                                     <v-list-item-content class="ma-0 ml-3 pa-0">
-                                        <v-list-item-title v-text="item.text" class="ma-0 pa-0"></v-list-item-title>
+                                        <a href="#"><v-list-item-title v-text="item.text" class="ma-0 pa-0"></v-list-item-title></a>
                                     </v-list-item-content>
                                 </v-col>
-                            </v-list-item>
+                            </v-col>
                         </v-row>
-                        
                     </v-flex>
                 </v-row>
             </v-layout>
