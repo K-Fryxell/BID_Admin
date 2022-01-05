@@ -4,8 +4,8 @@
         <v-container class="ma-0 pa-0" fluid>
             <v-layout class="ma-0 mt-8 pa-0" column>
                 <v-row class="ma-4 mt-12 pa-0 pt-12" justify="center">
-                    <v-card-title class="display-1 pt-12" style="text-decoration:underline; text-decoration-color:#808080;">
-                        <strong class="display-2" style="color:red;">心房細動</strong>の可能性があります
+                    <v-card-title class="lg-display-1 pt-12" style="text-decoration:underline; text-decoration-color:#808080;">
+                        <strong style="color:red;">心房細動</strong>の可能性があります
                     </v-card-title>
                 </v-row>
                 <v-row class="ma-4 mt-12 pa-0 pt-1" justify="center">
