@@ -1,5 +1,5 @@
 <template>
-    <v-content class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5); height:100%"><!-- 背景グラデーション -->
+    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5); height:100%"><!-- 背景グラデーション -->
         <!-- pcヘッダー -->
 		<v-navigation-drawer class="ma-0 pa-0 hidden-sm-and-down" fixed height style="width:100%;" permanent>
 			<Header/>
@@ -10,7 +10,7 @@
 		</v-navigation-drawer>
 
         <!-- 時間があれば：左右の⇒を状況に合わせて片方消したい -->
-        <v-carousel height="100%" hide-delimiter-background continuous="false" hide-delimiters="false">
+        <v-carousel class="hidden-sm-and-down" height="100%" hide-delimiter-background>
             <v-carousel-item>
                 <Measures/>
             </v-carousel-item>
@@ -18,7 +18,11 @@
                 <MeasuresDetails/>
             </v-carousel-item>
         </v-carousel>
-    </v-content>
+        <v-row class="ma-0 pa-0 hidden-md-and-up">
+            <Measures/>
+            <MeasuresDetails/>
+        </v-row>
+    </v-main>
 </template>
 
 <script>

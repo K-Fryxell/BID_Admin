@@ -1,18 +1,18 @@
 <template>
-    <v-content>
+    <v-main>
         <Header/>
         <v-container class="ma-0 pa-0" fluid>
             <v-layout class="ma-0 mt-8 pa-0" column>
                 <v-row class="ma-4 mt-12 pa-0 pt-12" justify="center">
-                    <v-title class="display-1 pt-12" style="text-decoration:underline; text-decoration-color:#808080;">
+                    <v-card-title class="display-1 pt-12" style="text-decoration:underline; text-decoration-color:#808080;">
                         <strong class="display-2" style="color:red;">心房細動</strong>の可能性があります
-                    </v-title>
+                    </v-card-title>
                 </v-row>
                 <v-row class="ma-4 mt-12 pa-0 pt-1" justify="center">
                     <v-flex class="ma-0 pa-0" lg7>
                         <!-- 症状例 -->
                         <v-row class="ml-n12 pa-0">
-                            <v-title class="headline ml-n12"><strong>以下の症状が続く場合、病院で受診してください。</strong></v-title>
+                            <v-card-title class="headline ml-n12"><strong>以下の症状が続く場合、病院で受診してください。</strong></v-card-title>
                         </v-row>
                         <!-- ul内：本来はデータベース連携 今回はやりません -->
                         <v-row class="ma-0 mt-6 pa-0" style="background-color:#FDF2F9; border-style: solid; border-color:grey; border-width:4px;">
@@ -25,9 +25,9 @@
                         </v-row>
                         <!-- 推奨病院 -->
                         <v-row class="ma-0 ml-n12 pa-0">
-                            <v-title class="title ml-n12 mt-0 pt-9">
+                            <v-card-title class="title ml-n12 mt-0 pt-9">
                                 <strong>推奨病院</strong>
-                            </v-title>
+                            </v-card-title>
                         </v-row>
                         <v-row class="ma-0 pa-0">
                             <v-list-item
@@ -47,7 +47,7 @@
                 </v-row>
             </v-layout>
         </v-container>
-    </v-content>
+    </v-main>
 </template>
 
 <script>

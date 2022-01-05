@@ -18,7 +18,8 @@ export default {
     },
     data () {
         return {
-            username:""
+            username:"",
+            heartRate:""
         }
     },
     methods: {
@@ -30,6 +31,7 @@ export default {
                     if (snapshot.exists()) {
                         console.log(snapshot.val())
                         this.username = snapshot.val().username
+                        this.heartRate = snapshot.val().heart_rate
                     } else {
                         console.log("No data available")
                     }
@@ -45,7 +47,7 @@ export default {
                     const db = getDatabase()
                     //更新内容を設定
                     const postData = {
-                        heartRate: 300,
+                        heart_rate: this.heartRate,
                         uid: user.uid,
                         email: this.$store.getters.user
                     }
