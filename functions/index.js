@@ -16,7 +16,7 @@ const pushMessage = (fcmToken) => ({
 })
 
 exports.sendMention = functions.database.ref('/users/{uid}/vitalLog').onWrite(() => {
-    const token = "fvjjznqaS0KUdF8RtJ5KP1:APA91bHREEmTV0Z8ozs_Yrli0WQRqLPeSYK75b_FLA_0cZQp48frvaG8sKV3-FkbIClxlm511aoA3GuNvqGkEdisYNlkrRP5VVauQ9PS8vm1ssMiNsAJ4GiekNdiOhDLyrycQOLnxHns"
+    const token = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
     admin.messaging().send(pushMessage(token, "プッシュ通知テスト"))
         .then((response) => { console.log('Successfully sent message:', response) })
         .catch((e) => { console.log('Error sending message:', e) })
@@ -30,7 +30,7 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
     if (g <= 30) {
         //メール送信処理
         const from = functions.config().gmail.email
-        const to = "k.fryxell.2@gmail.com"
+        const to = "kaitoiwakura2@gmail.com"
         const msg = "成功しました!!"
         const smtpConfig = {
             host: "smtp.gmail.com",
