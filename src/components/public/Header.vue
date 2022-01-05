@@ -25,10 +25,10 @@
                     </v-btn>
                 </template>
                 <v-list>
-                    <v-list-item to="#">
+                    <v-list-item to="change_details">
                         ユーザ情報変更
                     </v-list-item>
-                    <v-list-item to='user_detail'>
+                    <v-list-item to='user_details'>
                         バイタルログ
                     </v-list-item>
                     <v-list-item to='#'>
