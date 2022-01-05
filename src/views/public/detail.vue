@@ -2,9 +2,9 @@
     <div id="Detail">
     <Header />
 
-    <v-card max-width="800px" class="mx-auto d-none d-sm-block">
-    <v-tabs 
-    style="margin-top:150px"
+    <v-card max-width="850px" class="mx-auto d-none d-sm-block">
+    <v-tabs
+    style="margin-top:40px;"
     vertical>
       <v-tab
       v-for="(item, idx) in items"
@@ -21,7 +21,7 @@
       height="100px">
         <v-card flat>
           <v-card-text>
-          <BodyTemperatureChart />
+          <component :is="item.template" />
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -38,7 +38,7 @@
           centered
           v-model="tab"
           show-arrows
-          style="margin-top:20%"
+          style="margin-top:10%"
         >
           <v-tab
             v-for="item in items"
@@ -57,7 +57,7 @@
         <v-card flat>
           <v-card-text>
            <div style="height:40%">
-              <BodyTemperatureChart />
+              <component :is="item.template" />
            </div>
           </v-card-text>
         </v-card>
@@ -70,10 +70,10 @@
 <script>
 import Header from '@/components/public/Header'
 import BodyTemperatureChart from '@/components/chart/BodyTemperatureChart'
-// import BloodPressureChart from '@/components/chart/BloodPressureChart'
-// import HeartRateChart from '@/components/chart/HeartRateChart'
-// import DopamineChart from '@/components/chart/DopamineChart'
-// import SerotoninChart from '@/components/chart/SerotoninChart'
+import BloodPressureChart from '@/components/chart/BloodPressureChart'
+import HeartRateChart from '@/components/chart/HeartRateChart'
+import DopamineChart from '@/components/chart/DopamineChart'
+import SerotoninChart from '@/components/chart/SerotoninChart'
 
 export default {
     name: "Detail",
@@ -81,21 +81,21 @@ export default {
         return {
         tab: null,
         items: [
-            { navi: '　　体温　', icon: 'mdi-thermometer'},
-            { navi: '　　血圧　', icon: 'mdi-ray-vertex'},
-            { navi: '　心拍数　', icon: 'mdi-heart-pulse'},
-            { navi: 'ドーパミン', icon: 'mdi-head-snowflake-outline'},
-            { navi: 'セロトニン', icon: 'mdi-head-heart-outline'},
+            { navi: '　　体温　', icon: 'mdi-thermometer', template: 'BodyTemperatureChart'},
+            { navi: '　　血圧　', icon: 'mdi-ray-vertex', template: 'BloodPressureChart'},
+            { navi: '　心拍数　', icon: 'mdi-heart-pulse', template: 'HeartRateChart'},
+            { navi: 'ドーパミン', icon: 'mdi-head-snowflake-outline', template: 'DopamineChart'},
+            { navi: 'セロトニン', icon: 'mdi-head-heart-outline', template: 'SerotoninChart'}
         ],
         }
     },
     components: {
         Header,
         BodyTemperatureChart,
-        // BloodPressureChart,
-        // HeartRateChart,
-        // DopamineChart,
-        // SerotoninChart
+        BloodPressureChart,
+        HeartRateChart,
+        DopamineChart,
+        SerotoninChart
     },
     methods: {  },
     created() {},
