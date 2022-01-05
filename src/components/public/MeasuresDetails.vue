@@ -5,7 +5,7 @@
             <v-layout class="ma-0 mt-8 pa-0" column>
                 <v-row class="ma-4 pa-0 pt-1" justify="center">
                     <v-flex class="ma-0 pa-0" lg10>
-                        <v-row class="ma-4 mt-6 pa-0 pt-12">
+                        <v-row class="ma-4 mt-lg-0 mt-6 pa-0 pt-lg-8 pt-12">
                             <v-card-title class="headline ma-0 pa-0">
                                 <strong>心房細動の</strong>
                             </v-card-title>
@@ -23,7 +23,7 @@
                                 <hr class="mt-n3" style="position:absolute; top:0px; left:13%; width:6%; border: solid 3px #E83015; z-index:2">
                             </div>
                             <!-- 本来はforでlist-itemを回すが、小見出し前の縦棒の色分けが面倒なので今はやらない -->
-                            <v-row class="ma-0 mt-1 pa-0">
+                            <v-row class="ma-0 mt-lg-n2 mt-1 pa-0">
                                 <v-col class="ma-0 pa-0" lg="6" cols="12">
                                     <v-row class="ma-0 pa-0" style="border-left: solid 5px #1B813E">
                                         <v-card-title><strong>高血圧</strong></v-card-title>
@@ -41,7 +41,7 @@
                                         よくとることです。飲酒も控えましょう。夜遅い食事は肥満の元です。</v-card-text>
                                     </v-row>
                                 </v-col>
-                                <v-col class="ma-0 mt-2 pa-0" lg="6" cols="12">
+                                <v-col class="ma-0 mt-lg-n6 mt-2 pa-0" lg="6" cols="12">
                                     <v-row class="ma-0 pa-0" style="border-left: solid 5px #1B813E">
                                         <v-card-title><strong>肥満</strong></v-card-title>
                                     </v-row>
@@ -50,8 +50,8 @@
                                             脂肪がついている内臓脂肪型肥満の人も、発症のリスクを抱えています。</v-card-text>
                                     </v-row>
                                 </v-col>
-                                <v-col class="ma-0 mt-2 pa-0" lg="6" cols="12">
-                                    <v-row class="ma-0 pa-0" style="border-left: solid 5px #E83015">
+                                <v-col class="ma-0 mt-2 mt-lg-0 pa-0" lg="6" cols="12">
+                                    <v-row class="ma-0 mt-lg-n3 pa-0" style="border-left: solid 5px #E83015">
                                         <v-card-title><strong>運動</strong></v-card-title>
                                     </v-row>
                                     <v-row class="ma-0 mt-n3 pa-0">
@@ -59,15 +59,15 @@
                                         とした運動です。逆に、激しい運動は心房細動のリスクにもなるので控えましょう。</v-card-text>
                                     </v-row>
                                 </v-col>
-                                <v-col class="ma-0 mt-2 pa-0" lg="6" cols="12">
-                                    <v-row class="ma-0 pa-0" style="border-left: solid 5px #1B813E">
+                                <v-col class="ma-0 mt-lg-n8 mt-2 pa-0" lg="6" cols="12">
+                                    <v-row class="ma-0 mt-lg-n3 pa-0" style="border-left: solid 5px #1B813E">
                                         <v-card-title><strong>糖尿病</strong></v-card-title>
                                     </v-row>
                                     <v-row class="ma-0 mt-n3 pa-0">
                                         <v-card-text>糖尿病は動脈硬化を起こしやすくします。</v-card-text>
                                     </v-row>
                                 </v-col>
-                                <v-col class="ma-0 mt-2 pa-0" lg="6" cols="12">
+                                <v-col class="ma-0 mt-lg-n3 mt-2 pa-0" lg="6" cols="12">
                                     <v-row class="ma-0 pa-0" style="border-left: solid 5px #E83015">
                                         <v-card-title><strong>薬</strong></v-card-title>
                                     </v-row>
@@ -75,7 +75,7 @@
                                         <v-card-text>ジギタリス製剤、カルシウム拮抗薬、β遮断薬など</v-card-text>
                                     </v-row>
                                 </v-col>
-                                <v-col class="ma-0 mt-2 pa-0" lg="6" cols="12">
+                                <v-col class="ma-0 mt-n8 pa-0" lg="6" cols="12">
                                     <v-row class="ma-0 pa-0" style="border-left: solid 5px #1B813E">
                                         <v-card-title><strong>喫煙</strong></v-card-title>
                                     </v-row>
