@@ -75,11 +75,11 @@
                 <!-- 人オブジェクト -->
                 <v-flex class="pt-12" lg4>
                     <!-- 異常値検出時ここの画像を変える -->
-                    <v-row color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
+                    <v-row v-if="flg==0" color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
                         <img width="500px" src="@/assets/people.png">
                     </v-row>
-                    <v-row color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
-                        <img width="500px" src="@/assets/people3.png">
+                    <v-row v-if="flg==1" color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
+                        <img width="500px" src="@/assets/people3.png" @click="modal">
                     </v-row>
                 </v-flex>
 
@@ -154,6 +154,9 @@ export default {
         }
     },
     methods: {
+        modal(){
+            this.vitalLogModal = true
+        },
         getUsersDB(){
             onAuthStateChanged(getAuth(), (user) => {
                 if (user) {
@@ -191,18 +194,22 @@ export default {
             })
         }
     },
-    created:function(){
-        this.getUsersDB()
+    async created(){
+        // this.getUsersDB()
+        this.bodyTemperature = this.getUsersDB(),
+        this.heartRate  = this.getUsersDB(),
+        this.bloodPressureMax  = this.getUsersDB(),
+        this.bloodPressureMin  = this.getUsersDB()
     },
     watch:{
-         flg:function(){
-            if(this.flg == 1){
-                this.vitalLogModal = true
-            }
-            else{
-                this.vitalLogModal = false
-            }
-         }
+        //  flg:function(){
+        //     if(this.flg == 1){
+        //         this.vitalLogModal = true
+        //     }
+        //     else{
+        //         this.vitalLogModal = false
+        //     }
+        //  }
     },
     mounted(){
         onAuthStateChanged(getAuth(), (user) => {

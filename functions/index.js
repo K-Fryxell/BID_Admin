@@ -48,37 +48,18 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
             from: from,
             to: to,
             subject: "【BID緊急通知システム】救急要請",
-            html: `
-            -- 個人情報 --
-            名前：春 太郎
-            性別：女
-            住所：〒160-0023 東京都新宿区西新宿1-7-3
-
-
-            -- 場所・原因 --
-            時間：12/15 AM10:10
-            場所：東京都新宿区西新宿1-7-3
-            原因：心筋梗塞
-
-            -- 状態 --
-            体温：37.3℃
-            心拍数：0bpm
-            最高血圧：128mmHg
-            最低血圧：81mmHg
-            意識レベル：Ⅲ-1
-            `,
+            html: `-- 個人情報 --<br/>名前：春 太郎<br/>性別：女<br/>住所：〒160-0023 東京都新宿区西新宿1-7-3<br/><br/>-- 場所・原因 --<br/>時間：12/15 AM10:10<br/>場所：東京都新宿区西新宿1-7-3<br/>原因：心筋梗塞<br/><br/>-- 状態 --<br/>体温：37.3℃<br/>心拍数：0bpm<br/>最高血圧：128mmHg<br/>最低血圧：81mmHg<br/>意識レベル：Ⅲ-1`,
         }
-
+        
+        // ログ
+        functions.logger.log("送信成功!!")
         // Getting results
-        const result = transporter.sendMail(mailOptions, (err, info) => {
+        transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
                 return "error: " + err.toString()
             }
             return "success: " + info.toString()
         })
-        res.send(result)
-        // ログ
-        functions.logger.log("送信成功!!")
     }
     else {
         //ログ
