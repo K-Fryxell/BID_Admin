@@ -7,7 +7,7 @@ admin.initializeApp(functions.config().firebase)
 const pushMessage = (fcmToken) => ({
     notification: {
         title: '【BID通知システム】',
-        body: '送信成功!!',
+        body: '１件の異常を発見しました',
     },
     data: {
         data: 'test',
@@ -17,7 +17,7 @@ const pushMessage = (fcmToken) => ({
 
 exports.sendMention = functions.database.ref('/users/{uid}/vitalLog').onWrite(() => {
     const token = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
-    admin.messaging().send(pushMessage(token, "プッシュ通知テスト"))
+    admin.messaging().send(pushMessage(token, "１件の異常を発見しました"))
         .then((response) => { console.log('Successfully sent message:', response) })
         .catch((e) => { console.log('Error sending message:', e) })
 })
@@ -33,7 +33,6 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
         //メール送信処理
         const from = functions.config().gmail.email
         const to = "kaitoiwakura2@gmail.com"
-        const msg = "成功しました!!"
         const smtpConfig = {
             host: "smtp.gmail.com",
             port: 465,
@@ -48,8 +47,26 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
         const mailOptions = {
             from: from,
             to: to,
-            subject: "This is a sample of email function",
-            html: `${msg}`,
+            subject: "【BID緊急通知システム】救急要請",
+            html: `
+            -- 個人情報 --
+            名前：春 太郎
+            性別：女
+            住所：〒160-0023 東京都新宿区西新宿1-7-3
+
+
+            -- 場所・原因 --
+            時間：12/15 AM10:10
+            場所：東京都新宿区西新宿1-7-3
+            原因：心筋梗塞
+
+            -- 状態 --
+            体温：37.3℃
+            心拍数：0bpm
+            最高血圧：128mmHg
+            最低血圧：81mmHg
+            意識レベル：Ⅲ-1
+            `,
         }
 
         // Getting results
