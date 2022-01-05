@@ -73,16 +73,25 @@
                 </v-flex>
 
                 <!-- 人オブジェクト -->
-                <v-flex class="blue pt-12" lg4>
-                    <v-row class="ma-0 mt-12 pt-12 pa-0" justify="center" style="background-color: #E5ECE6">
-                        <!-- 異常値検出時ここの画像を変える -->
-                        <img width="500px" src="@/assets/human.png">
+                <v-flex class="pt-12" lg4>
+                    <!-- 異常値検出時ここの画像を変える -->
+                    <v-row color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
+                        <img width="500px" src="@/assets/people.png">
+                    </v-row>
+                    <v-row color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
+                        <img width="500px" src="@/assets/people3.png">
                     </v-row>
                 </v-flex>
 
                 <!-- メッセージ表示領域 -->
-                <v-flex class="green" lg4>
-                    start 、 center 、 end 、 space-between 、 space-around および stretch
+                <v-flex class="ma-0 mt-12 pa-0" lg4>
+                    <v-row class="ma-0 mt-12 pa-0" justify="center">
+                        <v-col lg="6" class="ma-0 mt-6 pa-3" style="background-color:#fff; border-style: solid;border-color: #707070 #707070 #707070 #707070;border-width:3px;">
+                            <v-card-text class="ma-0 pa-0 subtitle-1">
+                                最近血圧が高いようです。<br/>一週間に2回は魚を食べましょう。
+                            </v-card-text>
+                        </v-col>
+                    </v-row>
                 </v-flex>
             </v-layout>
 
