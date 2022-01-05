@@ -2,9 +2,9 @@
     <div id="Detail">
     <Header />
 
-    <v-card max-width="800px" class="mx-auto d-none d-sm-block">
-    <v-tabs 
-    style="margin-top:150px"
+    <v-card max-width="850px" class="mx-auto d-none d-sm-block">
+    <v-tabs
+    style="margin-top:40px;"
     vertical>
       <v-tab
       v-for="(item, idx) in items"
@@ -38,7 +38,7 @@
           centered
           v-model="tab"
           show-arrows
-          style="margin-top:20%"
+          style="margin-top:10%"
         >
           <v-tab
             v-for="item in items"
