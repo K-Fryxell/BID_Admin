@@ -35,12 +35,6 @@ const routes = [
       import('@/views/public/userMeasures.vue')
   },
   {
-    path: '/user_measuresDetail',
-    name: 'userMeasuresDetail',
-    component: () =>
-      import('@/views/public/userMeasuresDetail.vue')
-  },
-  {
     path: '/top',
     name: 'top',
     component: () =>
@@ -51,6 +45,12 @@ const routes = [
     name: 'detail',
     component: () =>
       import('@/views/public/detail.vue')
+  },
+  {
+    path: '/change_details',
+    name: 'changeDetails',
+    component: () =>
+      import('@/views/public/changeDetails.vue')
   },
 ]
 

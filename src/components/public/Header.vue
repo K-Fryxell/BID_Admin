@@ -1,37 +1,47 @@
 <template>
-    <v-card class="ma-0 pa-0 ma-0 pa-0 pt-6 pt-lg-0 pt-md-0 pt-sm-0" style="background-color: #83B590" tile elevation="0">
-        <v-toolbar class="ma-0 pa-0" elevation="0" dense flat style="background-color: #83B590">
-            <v-toolbar-title class="ma-0 pa-0 pt-3">
-                <router-link to="/">
+    <v-card class="ma-0 pa-0 ma-0 pa-0" style="background-color: #fff" tile elevation="0">
+        <v-toolbar class="ma-0 pa-0" dense elevation="0" flat height="70px"
+        style="background-color: #fff;
+        border-style: solid;
+        border-color: #fff #fff #000 #fff;
+        border-width: 0px 0px 15px 0px;">
+            <v-toolbar-title class="ma-0 pa-0 pt-0">
+                <router-link to="top">
                     <!--ロゴ <img> -->
-                    <img height="50" src="@/assets/logo.png">
+                    <img height="35px" src="@/assets/logo1.png">
                 </router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-menu bottom left>
-                <!-- <template v-slot:activator="{ on, attrs }">
+                <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        color="black"
-                        dark
+                        class="ma-0 pa-0"
+                        color="green"
                         icon
                         v-bind="attrs"
                         v-on="on"
                     >
-                        <v-icon class="ma-0 pa-0 pr-5" x-large style="color: #FAFAFA">mdi-microsoft-xbox-controller-menu</v-icon>
+                        <v-icon class="ma-0 pa-0 pb-2" x-large style="color: #83B590">mdi-microsoft-xbox-controller-menu</v-icon>
                     </v-btn>
-                </template> -->
+                </template>
                 <v-list>
-                    <v-list-item>    
-                        <v-list-item-title>{{ name }}さん</v-list-item-title>  
+                    <v-list-item to="#">
+                        ユーザ情報変更
+                    </v-list-item>
+                    <v-list-item to='user_detail'>
+                        バイタルログ
                     </v-list-item>
                     <v-list-item to='#'>
-                        マイページへ
+                        異常ログ
                     </v-list-item>
-                    <v-list-item to='#'>
-                        
+                    <v-list-item to="#">
+                        通知確認
                     </v-list-item>
-                    <v-list-item @click="logout">
-                        ログアウト
+                    <v-list-item to="#">
+                        システム設定
+                    </v-list-item>
+                    <v-list-item to="#">
+                        お問い合わせ
                     </v-list-item>
                 </v-list>
             </v-menu>
