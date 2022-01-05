@@ -112,7 +112,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="end" class="pa-0 ma-0 pb-6 lg-mr-10 mr-6">
-                        <v-btn width="50" to="user_measures">
+                        <v-btn width="50" to="measures">
                             詳細へ
                         </v-btn>
                     </v-row>
