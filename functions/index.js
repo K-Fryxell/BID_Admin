@@ -30,7 +30,7 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
     if (g <= 30) {
         //メール送信処理
         const from = functions.config().gmail.email
-        const to = "ak.lumina.inc@gmail.com"
+        const to = "k.fryxell.2@gmail.com"
         const msg = "成功しました!!"
         const smtpConfig = {
             host: "smtp.gmail.com",
