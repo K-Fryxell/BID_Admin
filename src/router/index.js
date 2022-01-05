@@ -11,10 +11,10 @@ const routes = [
       import('@/views/admin/top.vue')
   },
   {
-    path: '/regist_admin',
-    name: 'regist',
+    path: '/title',
+    name: 'title',
     component: () =>
-      import('@/views/admin/registAdmin.vue')
+      import('@/views/public/title.vue')
   },
   {
     path: '/regist_user',
