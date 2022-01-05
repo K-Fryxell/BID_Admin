@@ -38,7 +38,7 @@ export default {
             heartRate: Number,
             bloodPressure: Number,
             flg: 0,
-            vitalLog: false
+            vitalLogModal: false
         }
     },
     methods: {
@@ -76,11 +76,6 @@ export default {
                     })
                 }
             })
-        },
-        logFlg(){
-            if(this.flg == 1){
-                this.vitalLog = true
-            }
         }
     },
     created:function(){
@@ -89,15 +84,31 @@ export default {
     watch:{
          flg:function(){
             if(this.flg == 1){
-                this.vitalLog = true
+                this.vitalLogModal = true
             }
             else{
-                this.vitalLog = false
+                this.vitalLogModal = false
             }
          }
     },
     mounted(){
-        this.logFlg()
+        onAuthStateChanged(getAuth(), (user) => {
+            if (user) {
+                const dbRef = ref(getDatabase())
+                // バイタルログ取得
+                get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val())
+                    this.flg = snapshot.val().flg
+                }
+                else {
+                    console.log("No data available")
+                }
+                }).catch((error) => {
+                    console.error(error)
+                })
+            }
+        })
     }
 }
 </script>
