@@ -9,7 +9,9 @@
             <v-navigation-drawer class="ma-0 pa-0 hidden-md-and-up" fixed height style="width:100%;" permanent>
                 <Header/>
             </v-navigation-drawer> 
-            <v-layout class="ma-0 pa-0" style="height:100%">
+
+            <!-- PCレイアウト -->
+            <v-layout class="ma-0 pa-0 hidden-sm-and-down" style="height:100%">
                 <!-- バイタル表示領域 -->
                 <v-flex class="mb-6" lg4>
                     <!-- 下ぞろえの箱 -->
@@ -94,29 +96,82 @@
                     </v-row>
                 </v-flex>
             </v-layout>
-
-            <!-- モーダル -->
-            <v-dialog v-model="vitalLogModal" width="500">
+            <!-- pcモーダル -->
+            <v-dialog class="hidden-sm-and-down" v-model="vitalLogModal" width="500">
                 <v-card>
                     <v-row class="ma-0 pa-0 pt-5" justify="center">
                         <img src="@/assets/bikkuri.png" alt="異常値検出マーク">
                     </v-row>
                     <v-row class="ma-0 mt-4 pa-0" justify="center">
                         <v-col lg="11">
-                            <v-card-text class="title">
+                            <v-card-text class="text-lg-h6 subtitle-1">
                                 心拍数が高いです。<br/>
                                 カフェインの摂りすぎ、喫煙は控えましょう。<br/><br/>
                                 この状態が続く場合や眩暈などの症状がある場合、心房細動の可能性があるので早めの受診を推奨します。
                             </v-card-text>
                         </v-col>
                     </v-row>
-                    <v-row justify="end" class="pa-0 ma-0 pb-6 mr-10">
+                    <v-row justify="end" class="pa-0 ma-0 pb-6 lg-mr-10 mr-6">
                         <v-btn width="50" to="user_measures">
                             詳細へ
                         </v-btn>
                     </v-row>
                 </v-card>
             </v-dialog>
+
+            <!-- スマホレイアウト -->
+            <v-layout class="ma-0 pa-0 hidden-md-and-up" style="height:100%" column>
+                <!-- バイタル表示領域 -->
+                <v-row class="ma-0 mt-12 pa-0" justify="center">
+                    <v-col class="mt-12" cols="11">
+                        <v-card style="background-color:#fff; border-style: solid;border-color:#707070;border-width:3px;">
+                            <v-row class="ma-0 pa-0" justify="center">
+                                <v-card-title class="subtitle-1">今日の記録</v-card-title>
+                            </v-row>
+                            <v-row class="ma-0 pa-0" justify="center">
+                                <v-col class="ma-0 pa-0" cols="4">
+                                    <v-card-text class="ma-0 pa-0 text-center">心拍数(bpm)</v-card-text>
+                                    <v-card-text class="ma-0 pa-0 text-center">
+                                        <span style="color:#11FF00">{{heartRate}}</span>
+                                    </v-card-text>
+                                </v-col>
+                                <v-col class="ma-0 pa-0" cols="4">
+                                    <v-card-text class="ma-0 pa-0 text-center">体温(℃)</v-card-text>
+                                    <v-card-text class="ma-0 pa-0 text-center">
+                                        <span style="color:#11FF00">{{bodyTemperature}}</span>
+                                    </v-card-text>
+                                </v-col>
+                                <v-col class="ma-0 pa-0" cols="4">
+                                    <v-card-text class="ma-0 pa-0 text-center">血圧(mmHg)</v-card-text>
+                                    <v-card-text class="ma-0 pa-0 text-center">
+                                        <span style="color:#ff4500">{{bloodPressureMax}}</span>/<span style="color:#0000ff">{{bloodPressureMin}}</span>
+                                    </v-card-text>
+                                </v-col>
+                            </v-row>
+                        </v-card>
+                    </v-col>
+                </v-row>
+                <!-- 人オブジェクト -->
+                <v-row class="ma-0 pa-0" justify="center">
+                     <!-- 異常値検出時ここの画像を変える -->
+                    <v-row color="transparent" class="ma-0 pt-6 pa-0" justify="center">
+                        <img width="300px" src="@/assets/people.png">
+                    </v-row>
+                    <v-row color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
+                        <img width="300px" src="@/assets/people3.png">
+                    </v-row>
+                </v-row>
+                <!-- メッセージ表示領域 -->
+                <v-row class="ma-0 mt-12 pa-0" justify="center">
+                    <v-card-text class="ma-0 mb-10 pa-0 body-1 text-center">
+                        最近血圧が高いようです。<br/>一週間に2回は魚を食べましょう。
+                    </v-card-text>
+                </v-row>
+            </v-layout>
+
+            
+
+
         </v-container>
     </v-main>
 </template>
