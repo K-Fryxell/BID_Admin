@@ -23,41 +23,81 @@
 </template>
 
 <script>
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getDatabase, ref, child, get } from "firebase/database"
 import Header from '@/components/public/Header.vue'
 
 export default {
     name: 'top',
     components: {
-    Header
+        Header
     },
     data () {
         return {
-            card_height: Number,
-            card_width: Number,
-            img_width: 360
+            bodyTemperature: Number,
+            heartRate: Number,
+            bloodPressure: Number,
+            flg: 0,
+            vitalLog: false
         }
     },
     methods: {
-        onResize(){
-            this.x = window.innerWidth
-            this.y = window.innerHeight
+        getUsersDB(){
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    const dbRef = ref(getDatabase())
+
+                    // 基礎バイタルログ取得
+                    get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log(snapshot.val())
+                        this.bodyTemperature = snapshot.val().body_temperature
+                        this.heartRate = snapshot.val().heart_rate
+                        this.bloodPressure = snapshot.val().blood_pressure
+                    }
+                    else {
+                        console.log("No data available")
+                    }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+
+                    // バイタルログ取得
+                    get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log(snapshot.val())
+                        this.flg = snapshot.val().flg
+                    }
+                    else {
+                        console.log("No data available")
+                    }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+                }
+            })
         },
+        logFlg(){
+            if(this.flg == 1){
+                this.vitalLog = true
+            }
+        }
+    },
+    created:function(){
+        this.getUsersDB()
     },
     watch:{
-            x:function(){
-                if(this.x<360)
-                {
-                    this.card_height = 0,
-                    this.card_width = 0,
-                    this.img_width = 100
-                }
-                else
-                {
-                    this.card_height = 0,
-                    this.card_width = 0,
-                    this.img_width = 100
-                }
+         flg:function(){
+            if(this.flg == 1){
+                this.vitalLog = true
             }
-        },
+            else{
+                this.vitalLog = false
+            }
+         }
+    },
+    mounted(){
+        this.logFlg()
+    }
 }
 </script>

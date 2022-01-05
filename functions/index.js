@@ -25,9 +25,11 @@ exports.sendMention = functions.database.ref('/users/{uid}/vitalLog').onWrite(()
 exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context) => {
     functions.logger.log(snapshot)
     functions.logger.log(context)
-    const g = snapshot.after.val().heart_rate
-    functions.logger.log(g)
-    if (g <= 30) {
+    const b = snapshot.before.val().heart_rate
+    const a = snapshot.after.val().heart_rate
+    functions.logger.log(b)
+    functions.logger.log(a)
+    if (a>b && a-b>30 || b>a && b-a>30) {
         //メール送信処理
         const from = functions.config().gmail.email
         const to = "kaitoiwakura2@gmail.com"
@@ -59,11 +61,11 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
         })
         res.send(result)
         // ログ
-        functions.logger.log("異常値")
+        functions.logger.log("送信成功!!")
     }
     else {
         //ログ
-        functions.logger.log("正常値")
+        functions.logger.log("失敗")
     }
 })
 
