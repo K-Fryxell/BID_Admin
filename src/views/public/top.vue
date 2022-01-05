@@ -28,7 +28,7 @@
                                             </v-col>
                                             <v-col class="ma-0 pa-0" cols="3" style="background-color:#fff; border-style: solid;border-color: #707070 #707070 #707070 #707070;border-width: 3px 3px 3px 0px;">
                                                 <v-card-text class="mt-4 text-lg-h5 text-center">
-                                                    <span style="color:#11FF00">{{heartRate}}75</span>
+                                                    <span style="color:#11FF00">{{heartRate}}</span>
                                                 </v-card-text>
                                             </v-col>
                                         </v-row>
@@ -45,7 +45,7 @@
                                             </v-col>
                                             <v-col class="ma-0 pa-0 " cols="3" style="background-color:#fff; border-style: solid;border-color: #707070 #707070 #707070 #707070;border-width: 3px 3px 3px 0px;">
                                                 <v-card-text class="mt-4 text-lg-h5 text-center">
-                                                    <span style="color:#11FF00">{{bodyTemperature}}36,6</span>
+                                                    <span style="color:#11FF00">{{bodyTemperature}}</span>
                                                 </v-card-text>
                                             </v-col>
                                         </v-row>
@@ -61,7 +61,7 @@
                                             </v-col>
                                             <v-col class="ma-0 pa-0 " cols="3" style="background-color:#fff; border-style: solid;border-color: #707070 #707070 #707070 #707070;border-width: 3px 3px 3px 0px;">
                                                 <v-card-text class="mt-4 text-lg-h5 text-center">
-                                                    <span style="color:#ff4500">{{bloodPressureMax}}125</span>/<span style="color:#0000ff">85{{bloodPressureMin}}</span>
+                                                    <span style="color:#ff4500">{{bloodPressureMax}}</span>/<span style="color:#0000ff">{{bloodPressureMin}}</span>
                                                 </v-card-text>
                                             </v-col>
                                         </v-row>
@@ -87,7 +87,7 @@
             </v-layout>
 
             <!-- モーダル -->
-            <v-dialog persistent v-model="vitalLogModal" width="500">
+            <v-dialog v-model="vitalLogModal" width="500">
                 <v-card>
                     <v-row class="ma-0 pa-0 pt-5" justify="center">
                         <img src="@/assets/bikkuri.png" alt="異常値検出マーク">
