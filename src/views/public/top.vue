@@ -138,7 +138,8 @@ export default {
         return {
             bodyTemperature: Number,
             heartRate: Number,
-            bloodPressure: Number,
+            bloodPressureMax: Number,
+            bloodPressureMin: Number,
             flg: 0,
             vitalLogModal: false
         }
@@ -155,7 +156,8 @@ export default {
                         console.log(snapshot.val())
                         this.bodyTemperature = snapshot.val().body_temperature
                         this.heartRate = snapshot.val().heart_rate
-                        this.bloodPressure = snapshot.val().blood_pressure
+                        this.bloodPressureMax = snapshot.val().blood_pressure_max
+                        this.bloodPressureMin = snapshot.val().blood_pressure_min
                     }
                     else {
                         console.log("No data available")
