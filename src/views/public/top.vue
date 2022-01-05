@@ -154,11 +154,11 @@
                 <!-- 人オブジェクト -->
                 <v-row class="ma-0 pa-0" justify="center">
                      <!-- 異常値検出時ここの画像を変える -->
-                    <v-row color="transparent" class="ma-0 pt-6 pa-0" justify="center">
+                    <v-row v-if="flg==0" color="transparent" class="ma-0 pt-6 pa-0" justify="center">
                         <img width="300px" src="@/assets/people.png">
                     </v-row>
-                    <v-row color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
-                        <img width="300px" src="@/assets/people3.png">
+                    <v-row v-if="flg==1" color="transparent" class="ma-0 mt-12 pt-12 pa-0" justify="center">
+                        <img width="300px" src="@/assets/people3.png" @click="modal">
                     </v-row>
                 </v-row>
                 <!-- メッセージ表示領域 -->
