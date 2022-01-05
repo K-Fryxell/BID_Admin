@@ -108,7 +108,7 @@
     position: relative;
     margin: 0;
     padding: 0;
-    width: 1903px;
+    width: 1903;
     height: 873px;
     background-color: aqua;
     background-image: url(~@/assets/top.png);
