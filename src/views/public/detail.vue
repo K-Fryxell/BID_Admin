@@ -21,7 +21,7 @@
       height="100px">
         <v-card flat>
           <v-card-text>
-          <BarChart />
+          <BodyTemperatureChart />
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -57,7 +57,7 @@
         <v-card flat>
           <v-card-text>
            <div style="height:40%">
-              <BarChart />
+              <BodyTemperatureChart />
            </div>
           </v-card-text>
         </v-card>
@@ -69,7 +69,11 @@
 
 <script>
 import Header from '@/components/public/Header'
-import BarChart from '@/components/chart/BarChart'
+import BodyTemperatureChart from '@/components/chart/BodyTemperatureChart'
+// import BloodPressureChart from '@/components/chart/BloodPressureChart'
+// import HeartRateChart from '@/components/chart/HeartRateChart'
+// import DopamineChart from '@/components/chart/DopamineChart'
+// import SerotoninChart from '@/components/chart/SerotoninChart'
 
 export default {
     name: "Detail",
@@ -87,14 +91,15 @@ export default {
     },
     components: {
         Header,
-        BarChart
+        BodyTemperatureChart,
+        // BloodPressureChart,
+        // HeartRateChart,
+        // DopamineChart,
+        // SerotoninChart
     },
-    methods: {  
-    },
-    created() {
-    },
+    methods: {  },
+    created() {},
     computed: {},
-    mounted () {
-    }
-};
+    mounted () {}
+}
 </script>

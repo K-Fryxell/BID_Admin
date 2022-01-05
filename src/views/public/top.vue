@@ -1,76 +1,29 @@
 <template>
-    <v-content>
+    <content>
         <Header/>
-        <div class="wrap">
-            <strong>36.7{{temperature}}</strong>
-            <div class="border border-solid">最近血圧が高いようです。1週間に2回は魚を食べましょう。緊急性がある場合は、「すぐ病院へ」。</div>
-            <p class="first">
-            血圧
-            </p>
-            <p class="second">
-            意識レベル
-            </p>
-            <p class="third">
-            体温
-            </p>
-            <p class="unit">
-            ℃
-            </p>
-            <p class="fresult">144/96 - <span>3日前</span>
-            </p>
-            <p class="sresult">Ⅲ-2 - <span>3日前</span>
-            </p>
-            <p class="tresult">38.6℃ - <span>5日前</span> 
-            </p>
-            <h1>
-                <a href="#">メールアドレス・パスワードの変更はこちら</a>
-            </h1>
-
-<!-- <div id="app">
-    <v-app id="inspire">
-    <div>
-        <v-dialog
-        v-model="dialog"
-        width="500">
-            <template v-slot:activator="{ on, attrs }">
-                <div class="box">
-                    <v-btn
-                    color="Black"
-                    White
-                    v-bind="attrs"
-                    v-on="on">
-                    メッセージ
-                    </v-btn>
-                </div>
-            </template>
-            <v-card>
-                <v-card-text>
-                    <br>
-                    最近血圧が高いようです。1週間に2回は魚を食べましょう。緊急性がある場合は、「すぐ病院へ」。
-                </v-card-text>
-            <v-divider></v-divider>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="dialog = false"
-                    >
-                    了解
-                </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
-    </div>
-    </v-app>
-</div> -->>
-        </div>
-
-        
-    </v-content>
+        <v-container class="ma-0 pa-0" elevation="0" fluid style="background-color: #E5ECE6">
+            <v-layout class="ma-0 pa-0" column>
+            <!-- pcサイズ -->
+                <v-row class="ma-0 mb-10 pa-0 hidden-sm-and-down" justify="center">
+                    <v-card class="ma-0 pa-0" elevation="0" style="background-color: #E5ECE6">
+                        <v-row class="ma-0 pa-0 px-8">
+                            <v-col class="ma-0 px-12 pa-0">
+                                <v-card class="ma-0 pa-0" justify="center" elevation="0" v-resize='onResize' :height='card_height' :width='card_width'>
+                                    <v-row class="ma-0 pa-0" justify="center" style="background-color: #E5ECE6">
+                                        <img v-resize='onResize' :width='img_width' src="../../assets/human.png">
+                                    </v-row>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-row>
+            </v-layout>
+        </v-container>
+    </content>
 </template>
 
 <script>
+<<<<<<< HEAD
   import Header from '@/components/public/Header.vue'
 
   export default {
@@ -196,16 +149,43 @@
 </style>
 
 <script>
+=======
+>>>>>>> develop
 import Header from '@/components/public/Header.vue'
+
 export default {
     name: 'top',
     components: {
-      Header
+    Header
     },
     data () {
         return {
-            
+            card_height: Number,
+            card_width: Number,
+            img_width: 360
         }
     },
+    methods: {
+        onResize(){
+            this.x = window.innerWidth
+            this.y = window.innerHeight
+        },
+    },
+    watch:{
+            x:function(){
+                if(this.x<360)
+                {
+                    this.card_height = 0,
+                    this.card_width = 0,
+                    this.img_width = 100
+                }
+                else
+                {
+                    this.card_height = 0,
+                    this.card_width = 0,
+                    this.img_width = 100
+                }
+            }
+        },
 }
 </script>
