@@ -125,22 +125,92 @@
 </style>
 
 <script>
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getDatabase, ref, child, get } from "firebase/database"
 import Header from '@/components/public/Header.vue'
 
 export default {
     name: 'top',
     components: {
-    Header
+        Header
     },
     data () {
         return {
+            bodyTemperature: Number,
+            heartRate: Number,
+            bloodPressure: Number,
+            flg: 0,
+            vitalLogModal: false
         }
     },
     methods: {
-        
+        getUsersDB(){
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    const dbRef = ref(getDatabase())
+
+                    // 基礎バイタルログ取得
+                    get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log(snapshot.val())
+                        this.bodyTemperature = snapshot.val().body_temperature
+                        this.heartRate = snapshot.val().heart_rate
+                        this.bloodPressure = snapshot.val().blood_pressure
+                    }
+                    else {
+                        console.log("No data available")
+                    }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+
+                    // バイタルログ取得
+                    get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log(snapshot.val())
+                        this.flg = snapshot.val().flg
+                    }
+                    else {
+                        console.log("No data available")
+                    }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+                }
+            })
+        }
+    },
+    created:function(){
+        this.getUsersDB()
     },
     watch:{
-           
+         flg:function(){
+            if(this.flg == 1){
+                this.vitalLogModal = true
+            }
+            else{
+                this.vitalLogModal = false
+            }
+         }
     },
+    mounted(){
+        onAuthStateChanged(getAuth(), (user) => {
+            if (user) {
+                const dbRef = ref(getDatabase())
+                // バイタルログ取得
+                get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val())
+                    this.flg = snapshot.val().flg
+                }
+                else {
+                    console.log("No data available")
+                }
+                }).catch((error) => {
+                    console.error(error)
+                })
+            }
+        })
+    }
 }
 </script>
