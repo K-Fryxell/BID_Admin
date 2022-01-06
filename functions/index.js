@@ -29,10 +29,28 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
     const a = snapshot.after.val().heart_rate
     functions.logger.log(b)
     functions.logger.log(a)
-    if (a>b && a-b>30 || b>a && b-a>30) {
+
+    //日付取得処理
+    const dd = new Date()
+    const MM = dd.getMonth() + 1
+    const DD = dd.getDate()
+    const HO = dd.getHours() + 9
+    const MI = dd.getMinutes()
+
+    let check;
+    if (HO < 12) {
+        check = 'AM'
+    } else {
+        check = 'PM'
+    }
+    //時間成型処理
+    const time = MM + '/' + DD + ' ' + check + HO + ':' + MI
+
+    functions.logger.log(time)
+    if (a < 30) {
         //メール送信処理
         const from = functions.config().gmail.email
-        const to = "kaitoiwakura2@gmail.com"
+        const to = "ak.lumina.inc@gmail.com"
         const smtpConfig = {
             host: "smtp.gmail.com",
             port: 465,
@@ -43,12 +61,13 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
             },
         }
         const transporter = nodemailer.createTransport(smtpConfig)
+        const msgTemplate = `-- 個人情報 --<br/>名前：春 太郎<br/>性別：男<br/>住所：〒160-0023 東京都新宿区西新宿1-7-3<br/><br/>-- 場所・原因 --<br/>時間：${time}<br/>場所：<a href="https://goo.gl/maps/fWZZAwy4xXtD3Prq8">東京都新宿区西新宿1-7-3</a><br/>原因：心筋梗塞の疑い<br/><br/>-- 状態 --<br/>体温：37.3℃<br/>心拍数：0bpm<br/>最高血圧：128mmHg<br/>最低血圧：81mmHg<br/>意識レベル：Ⅲ-1`
 
         const mailOptions = {
             from: from,
             to: to,
             subject: "【BID緊急通知システム】救急要請",
-            html: `-- 個人情報 --<br/>名前：春 太郎<br/>性別：女<br/>住所：〒160-0023 東京都新宿区西新宿1-7-3<br/><br/>-- 場所・原因 --<br/>時間：12/15 AM10:10<br/>場所：東京都新宿区西新宿1-7-3<br/>原因：心筋梗塞<br/><br/>-- 状態 --<br/>体温：37.3℃<br/>心拍数：0bpm<br/>最高血圧：128mmHg<br/>最低血圧：81mmHg<br/>意識レベル：Ⅲ-1`,
+            html: msgTemplate,
         }
 
         // ログ
@@ -56,9 +75,9 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
         // Getting results
         transporter.sendMail(mailOptions, (err, info) => {
             if (err) {
-                return "error: " + err.toString()
+                return functions.logger.log(err.toString())
             }
-            return "success: " + info.toString()
+            return functions.logger.log(info.toString())
         })
     }
     else {

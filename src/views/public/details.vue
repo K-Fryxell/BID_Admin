@@ -51,7 +51,7 @@
     <v-tabs-items v-model="tab">
       <v-tab-item
         v-for="item in items"
-        :key="`content_arrows-${item.content}`"
+        :key="`content_arrows-${item.icon}`"
         eager
       >
         <v-card flat>
