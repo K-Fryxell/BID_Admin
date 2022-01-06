@@ -217,7 +217,6 @@ export default {
                     if (snapshot.exists()) {
                         console.log(snapshot.val())
                         this.bodyTemperature = snapshot.val().body_temperature
-                        this.heartRate = snapshot.val().heart_rate
                         this.bloodPressureMax = snapshot.val().blood_pressure_max
                         this.bloodPressureMin = snapshot.val().blood_pressure_min
                     }
@@ -240,45 +239,31 @@ export default {
                     }).catch((error) => {
                         console.error(error)
                     })
+                    get(child(dbRef, `monitor`)).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        console.log(snapshot.val())
+                        this.heartRate = snapshot.val().heart_rate
+                    }
+                    else {
+                        console.log("No data available")
+                    }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
                 }
             })
         }
     },
     async created(){
         // this.getUsersDB()
-        this.bodyTemperature = this.getUsersDB(),
         this.heartRate  = this.getUsersDB(),
+        this.bodyTemperature = this.getUsersDB(),
         this.bloodPressureMax  = this.getUsersDB(),
         this.bloodPressureMin  = this.getUsersDB()
     },
     watch:{
-        //  flg:function(){
-        //     if(this.flg == 1){
-        //         this.vitalLogModal = true
-        //     }
-        //     else{
-        //         this.vitalLogModal = false
-        //     }
-        //  }
     },
     mounted(){
-        onAuthStateChanged(getAuth(), (user) => {
-            if (user) {
-                const dbRef = ref(getDatabase())
-                // バイタルログ取得
-                get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    console.log(snapshot.val())
-                    this.flg = snapshot.val().flg
-                }
-                else {
-                    console.log("No data available")
-                }
-                }).catch((error) => {
-                    console.error(error)
-                })
-            }
-        })
     }
 }
 </script>

@@ -41,6 +41,12 @@ const routes = [
       import('@/views/public/changeDetails.vue')
   },
   {
+    path: '/methods',
+    name: 'Methods',
+    component: () =>
+      import('@/views/admin/methods.vue')
+  },
+  {
     path: '/regist',
     name: 'regist',
     component: () =>
