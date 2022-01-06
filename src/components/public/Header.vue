@@ -28,7 +28,7 @@
                     <v-list-item to="change_details">
                         ユーザ情報変更
                     </v-list-item>
-                    <v-list-item to='user_details'>
+                    <v-list-item to='details'>
                         バイタルログ
                     </v-list-item>
                     <v-list-item to='#'>

@@ -10,7 +10,7 @@
 		</v-navigation-drawer>
 
         <!-- 時間があれば：左右の⇒を状況に合わせて片方消したい -->
-        <v-carousel class="hidden-sm-and-down" height="100%" hide-delimiter-background>
+        <v-carousel hide-delimiters class="hidden-sm-and-down" height="100%" hide-delimiter-background>
             <v-carousel-item>
                 <Measures/>
             </v-carousel-item>
