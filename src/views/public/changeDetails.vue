@@ -1,71 +1,91 @@
 <template>
-    <v-content>
-        <Header/>
-        <v-card width="450px" class="mx-auto mt-2">
-            <v-card-title>
-                <h1 class="display-1">プロフィール変更</h1>
-            </v-card-title>
-            <v-card-text>
-                <v-form v-model="valid">
-                    <!-- mail入力 -->
-                    <v-row class="ma-0 pa-0">
-                        <v-col>
-                            <v-text-field
-                                v-model="mailaddress"
-                                class="ma-0 pa-0 pb-6"
-                                prepend-icon="mdi-email"
-                                label="メールアドレス"
-                                hint="メールアドレスは50字以下で記入してください。"
-                                :rules="emailRules"
-                                counter
-                                required
-                            />
-                        </v-col>
-                    </v-row>
-                    <!-- 郵便番号入力 -->
-                    <v-row class="ma-0 pa-0">
-                        <v-col>
-                            <v-text-field
-                                v-model="postNumber"
-                                class="ma-0 pa-0 pb-6"
-                                prepend-icon="mdi-currency-kzt"
-                                label="郵便番号"
-                                :rules="postNumberRules"
-                                required
-                            />
-                        </v-col>
-                    </v-row>
-                    <!-- 住所入力 -->
-                    <v-row class="ma-0 pa-0">
-                        <v-col>
-                            <v-text-field
-                                v-model="address"
-                                class="ma-0 pa-0 pb-6"
-                                prepend-icon="mdi-map-marker"
-                                label="住所"
-                                :rules="addressRules"
-                                required
-                            />
-                        </v-col>
-                    </v-row>
-                    <!-- 電話番号入力 -->
-                    <v-row class="ma-0 pa-0">
-                        <v-col>
-                            <v-text-field
-                                v-model="tel"
-                                class="ma-0 pa-0 pb-6"
-                                prepend-icon="mdi-phone-in-talk"
-                                label="電話番号"
-                                :rules="telRules"
-                                required
-                            />
-                        </v-col>
-                    </v-row>
-                    <v-btn @click="regist" :disabled="!valid">送信</v-btn>
-                </v-form>
-            </v-card-text>
-        </v-card>
-    </v-content>
+    <v-main class="ma-0 pt-12 pt-lg-7 mt-lg-0 mt-12 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
+        <v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
+			<Header/>
+		</v-navigation-drawer>
+        <v-layout class="ma-0 pa-0" style="height:100%">
+            <v-row class="ma-0 mt-lg-10 pa-0" justify="center">
+                <v-flex xs10 lg5>
+                    <v-card class="ma-0 mt-6">
+                        <v-card-title class="mt-12 mb-5 pt-lg-6 text-lg-h4 headline">
+                            プロフィール変更
+                        </v-card-title>
+                        <v-card-text>
+                            <v-form v-model="valid">
+                                <!-- mail入力 -->
+                                <v-row class="ma-0 pa-0" justify="start">
+                                    <v-col class="ma-0 ml-2 pa-0" cols="11">
+                                        <v-text-field
+                                            v-model="mailaddress"
+                                            class="ma-0 pa-0 pb-6"
+                                            prepend-icon="mdi-email"
+                                            label="メールアドレス"
+                                            hint="メールアドレスは50字以下で記入してください。"
+                                            :rules="emailRules"
+                                            counter
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <!-- 郵便番号入力 -->
+                                <v-row class="ma-0 pa-0" justify="start">
+                                    <v-col class="ma-0 ml-2 pa-0" cols="11">
+                                        <v-text-field
+                                            v-model="postNumber"
+                                            class="ma-0 pa-0 pb-6"
+                                            prepend-icon="mdi-currency-kzt"
+                                            label="郵便番号"
+                                            :rules="postNumberRules"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <!-- 住所入力 -->
+                                <v-row class="ma-0 pa-0" justify="start">
+                                    <v-col class="ma-0 ml-2 pa-0" cols="11">
+                                        <v-text-field
+                                            v-model="address"
+                                            class="ma-0 pa-0 pb-6"
+                                            prepend-icon="mdi-map-marker"
+                                            label="住所"
+                                            :rules="addressRules"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <!-- 電話番号入力 -->
+                                <v-row class="ma-0 pa-0" justify="start">
+                                    <v-col class="ma-0 ml-2 pa-0" cols="11">
+                                        <v-text-field
+                                            v-model="tel"
+                                            class="ma-0 pa-0 pb-6"
+                                            prepend-icon="mdi-phone-in-talk"
+                                            label="電話番号"
+                                            :rules="telRules"
+                                            required
+                                        />
+                                    </v-col>
+                                </v-row>
+                                <v-row class="ma-0 mt-2 ml-lg-12 pa-0" justify="center">
+                                    <v-flex class="ml-12" xs11 lg8>
+                                        <v-row class="ma-0 pa-0" justify="center">
+                                            <v-col class="ma-0 pa-0">
+                                                <v-btn to="/top">戻る</v-btn>
+                                            </v-col>
+                                            <v-col class="ma-0 pa-0">
+                                                <v-btn @click="regist" :disabled="!valid">変更</v-btn>
+                                            </v-col>
+                                        </v-row>
+                                    </v-flex>
+                                </v-row>                                
+                            </v-form>
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            </v-row>
+        </v-layout>
+        
+    </v-main>
 </template>
 
 <script>

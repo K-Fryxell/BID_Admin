@@ -1,16 +1,11 @@
 <template>
-    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5); height:100%"><!-- 背景グラデーション -->
-        <!-- pcヘッダー -->
-		<v-navigation-drawer class="ma-0 pa-0 hidden-sm-and-down" fixed height style="width:100%;" permanent>
-			<Header/>
-		</v-navigation-drawer>
-		<!-- 携帯ヘッダー -->
-		<v-navigation-drawer class="ma-0 pa-0 hidden-md-and-up" fixed height style="width:100%;" permanent>
+    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#707070); height:100%"><!-- 背景グラデーション -->
+		<v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
 			<Header/>
 		</v-navigation-drawer>
 
         <!-- 時間があれば：左右の⇒を状況に合わせて片方消したい -->
-        <v-carousel class="hidden-sm-and-down" height="100%" hide-delimiter-background>
+        <v-carousel hide-delimiters class="hidden-sm-and-down" height="100%" hide-delimiter-background>
             <v-carousel-item>
                 <Measures/>
             </v-carousel-item>

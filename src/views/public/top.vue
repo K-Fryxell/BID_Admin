@@ -1,14 +1,9 @@
 <template>
-    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5); height:100%">
+    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
         <v-container class="ma-0 pa-0" elevation="0" fluid style="height:100%">
-            <!-- pcヘッダー -->
-            <v-navigation-drawer class="ma-0 pa-0 hidden-sm-and-down" fixed height style="width:100%;" permanent>
+            <v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
                 <Header/>
             </v-navigation-drawer>
-            <!-- 携帯ヘッダー -->
-            <v-navigation-drawer class="ma-0 pa-0 hidden-md-and-up" fixed height style="width:100%;" permanent>
-                <Header/>
-            </v-navigation-drawer> 
 
             <!-- PCレイアウト -->
             <v-layout class="ma-0 pa-0 hidden-sm-and-down" style="height:100%">
@@ -96,8 +91,8 @@
                     </v-row>
                 </v-flex>
             </v-layout>
-            <!-- pcモーダル -->
-            <v-dialog class="hidden-sm-and-down" v-model="vitalLogModal" width="500">
+            <!-- 異常値検知モーダル -->
+            <v-dialog v-model="vitalLogModal" width="500">
                 <v-card>
                     <v-row class="ma-0 pa-0 pt-5" justify="center">
                         <img src="@/assets/bikkuri.png" alt="異常値検出マーク">
@@ -169,8 +164,26 @@
                 </v-row>
             </v-layout>
 
-            
-
+            <!-- 不審者発見モーダル -->
+            <v-dialog v-model="crimeVitalLogModal" width="500">
+                <v-card>
+                    <v-row class="ma-0 pa-0 pt-5" justify="center">
+                        <img src="@/assets/bikkuri.png" alt="異常値検出マーク">
+                    </v-row>
+                    <v-row class="ma-0 mt-4 pa-0" justify="center">
+                        <v-col lg="11">
+                            <v-card-text class="text-lg-h6 subtitle-1">
+                                付近で不審者が現れました。<br/>充分な警戒を行ってください。
+                            </v-card-text>
+                        </v-col>
+                    </v-row>
+                    <v-row justify="end" class="pa-0 ma-0 pb-6 lg-mr-10 mr-6">
+                        <v-btn width="50" @click="crimeVitalLogModal=false">
+                            閉じる
+                        </v-btn>
+                    </v-row>
+                </v-card>
+            </v-dialog>
 
         </v-container>
     </v-main>
@@ -205,7 +218,8 @@ export default {
             bloodPressureMax: Number,
             bloodPressureMin: Number,
             flg: 0,
-            vitalLogModal: false
+            vitalLogModal: false,
+            crimeVitalLogModal:false
         }
     },
     methods: {
