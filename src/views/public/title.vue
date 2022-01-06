@@ -26,15 +26,39 @@
     </v-main>
 </template>
 <script>
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 export default {
-    components: {},
-    data () {return {
-        crimeVitalLogModal:false
-    }},
-    methods:{
-        toTop(){
-            this.$router.push('/top')
+    data() {
+        return {
+            crimeVitalLogModal:false
+            mailaddress: "sample@hal.ac.jp",
+            password: "password",
+            isLoggedIn: false
         }
+    },
+    methods: {
+        login() {
+            signInWithEmailAndPassword(getAuth(), this.mailaddress, this.password).then(() => {
+                // Signed in
+                onAuthStateChanged(getAuth(), user=> {
+                    if(user) {
+                        console.log(user.email)
+                        this.$store.commit("onAuthStateChanged", user.email)
+                    }
+                })
+                alert("ログインしました")
+                this.$store.commit("onUserLoginStatusChanged", true)
+                this.isLoggedIn = true
+                this.$router.push('top')
+            }).catch((error) => {
+                const errorCode = error.code
+                const errorMessage = error.message
+                alert("失敗", errorCode, errorMessage)
+            })
+        }
+    },
+    created() {
+        this.isLoggedIn = this.$store.getters.isLoggedIn
     }
 }
 </script>

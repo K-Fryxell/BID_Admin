@@ -3,7 +3,6 @@
         <v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
 			<Header/>
 		</v-navigation-drawer>
-
         <v-layout class="ma-0 mt-12 pa-0">
             <v-row class="ma-0 pa-0" justify="center">
                 <v-flex xs5>
@@ -54,7 +53,6 @@
                                     {{ item.navi }}
                                 </v-tab>
                                 </v-tabs>
-
                             <v-tabs-items v-model="tab">
                             <v-tab-item
                                 v-for="item in items"
@@ -75,7 +73,6 @@
                 </v-flex>
             </v-row>
         </v-layout>
-        
     </v-main>
 </template>
 

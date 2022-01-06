@@ -40,7 +40,7 @@
                     <v-list-item to="#">
                         システム設定
                     </v-list-item>
-                    <v-list-item to="#">
+                    <v-list-item to="#" @click="logout">
                         お問い合わせ
                     </v-list-item>
                 </v-list>
@@ -54,5 +54,11 @@ export default {
         return{
         }
     },
+    methods:{
+        logout() {
+            this.$store.dispatch("logOut")
+            this.$router.push('/')
+        },
+    }
 }
 </script>
