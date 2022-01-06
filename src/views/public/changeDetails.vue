@@ -1,6 +1,8 @@
 <template>
-    <v-content>
-        <Header/>
+    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
+        <v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
+			<Header/>
+		</v-navigation-drawer>
         <v-card width="450px" class="mx-auto mt-2">
             <v-card-title>
                 <h1 class="display-1">プロフィール変更</h1>
@@ -65,7 +67,7 @@
                 </v-form>
             </v-card-text>
         </v-card>
-    </v-content>
+    </v-main>
 </template>
 
 <script>

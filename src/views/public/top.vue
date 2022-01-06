@@ -1,14 +1,9 @@
 <template>
-    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#c5c5c5); height:100%">
+    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
         <v-container class="ma-0 pa-0" elevation="0" fluid style="height:100%">
-            <!-- pcヘッダー -->
-            <v-navigation-drawer class="ma-0 pa-0 hidden-sm-and-down" fixed height style="width:100%;" permanent>
+            <v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
                 <Header/>
             </v-navigation-drawer>
-            <!-- 携帯ヘッダー -->
-            <v-navigation-drawer class="ma-0 pa-0 hidden-md-and-up" fixed height style="width:100%;" permanent>
-                <Header/>
-            </v-navigation-drawer> 
 
             <!-- PCレイアウト -->
             <v-layout class="ma-0 pa-0 hidden-sm-and-down" style="height:100%">
