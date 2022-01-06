@@ -275,9 +275,6 @@ export default {
                         if (snapshot.exists()) {
                             this.flg = snapshot.val().flg
                         }
-                        else {
-                            console.log("No data available")
-                        }
                     }).catch((error) => {
                         console.error(error)
                     })
@@ -293,7 +290,7 @@ export default {
                     })
                 }
             })
-        }
+        },
     },
     async created(){
         this.heartRate = this.getUsersDB(),

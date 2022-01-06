@@ -112,5 +112,5 @@ export default {
         this.isLoggedIn = this.$store.getters.isLoggedIn
     },
     computed: {},
-};
+}
 </script>
