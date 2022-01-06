@@ -50,7 +50,7 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
             subject: "【BID緊急通知システム】救急要請",
             html: `-- 個人情報 --<br/>名前：春 太郎<br/>性別：女<br/>住所：〒160-0023 東京都新宿区西新宿1-7-3<br/><br/>-- 場所・原因 --<br/>時間：12/15 AM10:10<br/>場所：東京都新宿区西新宿1-7-3<br/>原因：心筋梗塞<br/><br/>-- 状態 --<br/>体温：37.3℃<br/>心拍数：0bpm<br/>最高血圧：128mmHg<br/>最低血圧：81mmHg<br/>意識レベル：Ⅲ-1`,
         }
-        
+
         // ログ
         functions.logger.log("送信成功!!")
         // Getting results
