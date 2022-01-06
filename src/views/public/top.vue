@@ -212,31 +212,36 @@ export default {
         modal(){
             this.vitalLogModal = true
         },
-        getUsersDB(){
+        console(){
             onAuthStateChanged(getAuth(), (user) => {
                 if (user) {
                     const dbRef = ref(getDatabase())
-
                     // 基礎バイタルログ取得
                     get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        console.log(snapshot.val())
-                        this.bodyTemperature = snapshot.val().body_temperature
-                        this.bloodPressureMax = snapshot.val().blood_pressure_max
-                        this.bloodPressureMin = snapshot.val().blood_pressure_min
-                    }
-                    else {
-                        console.log("No data available")
-                    }
+                        if (snapshot.exists()) {
+                            console.log(snapshot.val())
+                        }
+                        else {
+                            console.log("No data available")
+                        }
                     }).catch((error) => {
                         console.error(error)
                     })
 
                     // バイタルログ取得
                     get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            console.log(snapshot.val())
+                        }
+                        else {
+                            console.log("No data available")
+                        }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+                    get(child(dbRef, `monitor`)).then((snapshot) => {
                     if (snapshot.exists()) {
-                        console.log(snapshot.val())
-                        this.flg = snapshot.val().flg
+                            console.log(snapshot.val())
                     }
                     else {
                         console.log("No data available")
@@ -244,9 +249,40 @@ export default {
                     }).catch((error) => {
                         console.error(error)
                     })
+                }
+            })
+        },
+        getUsersDB(){
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    const dbRef = ref(getDatabase())
+                    // 基礎バイタルログ取得
+                    get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            this.bodyTemperature = snapshot.val().body_temperature
+                            this.bloodPressureMax = snapshot.val().blood_pressure_max
+                            this.bloodPressureMin = snapshot.val().blood_pressure_min
+                        }
+                        else {
+                            console.log("No data available")
+                        }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
+
+                    // バイタルログ取得
+                    get(child(dbRef, `users/${user.uid}/vitalLog`)).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            this.flg = snapshot.val().flg
+                        }
+                        else {
+                            console.log("No data available")
+                        }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
                     get(child(dbRef, `monitor`)).then((snapshot) => {
                     if (snapshot.exists()) {
-                        console.log(snapshot.val())
                         this.heartRate = snapshot.val().heart_rate
                     }
                     else {
@@ -260,8 +296,7 @@ export default {
         }
     },
     async created(){
-        // this.getUsersDB()
-        this.heartRate  = this.getUsersDB(),
+        this.heartRate = this.getUsersDB(),
         this.bodyTemperature = this.getUsersDB(),
         this.bloodPressureMax  = this.getUsersDB(),
         this.bloodPressureMin  = this.getUsersDB()
@@ -269,6 +304,7 @@ export default {
     watch:{
     },
     mounted(){
+        this.console()
     }
 }
 </script>
