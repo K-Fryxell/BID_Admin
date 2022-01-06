@@ -30,7 +30,7 @@ import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebas
 export default {
     data() {
         return {
-            crimeVitalLogModal:false
+            crimeVitalLogModal:false,
             mailaddress: "sample@hal.ac.jp",
             password: "password",
             isLoggedIn: false
