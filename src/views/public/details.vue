@@ -1,14 +1,15 @@
 <template>
-    <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
+    <v-main class="ma-0 pt-lg-12 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
         <v-navigation-drawer class="ma-0 pa-0" hide-overlay fixed height style="width:100%;" permanent touchless>
 			<Header/>
 		</v-navigation-drawer>
+
         <v-layout class="ma-0 mt-12 pa-0">
-            <v-row class="ma-0 pa-0" justify="center">
-                <v-flex xs5>
+            <v-row class="ma-0 pa-0 hidden-sm-and-down" justify="center">
+                <v-flex lg5>
                     <div id="Detail">
                         <!-- <v-card max-width="850px" class="mx-auto d-none d-sm-block"> -->
-                        <v-card class=" d-none d-sm-block">
+                        <v-card class="">
                             <v-tabs
                             style="margin-top:40px;"
                             vertical>
@@ -33,11 +34,17 @@
                             </v-tab-item>
                             </v-tabs>
                         </v-card>
-
+                    </div>
+                </v-flex>
+            </v-row>
+            <!-- Phone -->
+            <v-row class="ma-0 mt-12 pa-0 hidden-md-and-up" style="width:100%;" justify="center">
+                <v-flex xs11>
+                    <div id="Detail">
                         <v-card 
                             show-arrows
                             background-color="primary"
-                            class="d-block d-sm-none"
+                            class="ma-0 pa-0"
                             style="height:40%"
                             >
                                 <v-tabs
@@ -53,11 +60,12 @@
                                     {{ item.navi }}
                                 </v-tab>
                                 </v-tabs>
+
                             <v-tabs-items v-model="tab">
                             <v-tab-item
                                 v-for="item in items"
                                 :key="`content_arrows-${item.icon}`"
-                                eager
+                                
                             >
                                 <v-card flat>
                                 <v-card-text>
@@ -73,6 +81,7 @@
                 </v-flex>
             </v-row>
         </v-layout>
+        
     </v-main>
 </template>
 

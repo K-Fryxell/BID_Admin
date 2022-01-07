@@ -1,6 +1,5 @@
 <template>
     <v-main>
-        <Header/>
         <v-container class="ma-0 pa-0" fluid>
             <v-layout class="ma-0 mt-0 pa-0" column>
                 <v-row class="ma-4 mt-12 pa-0 pt-12" justify="center">
