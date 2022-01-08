@@ -13,7 +13,7 @@ export default {
                 {
                     label: '体温(℃)',
                     data: [36.5, 36.4, 36.6, 36.7, 36.9, 37.2, 37.3, 37.2, 37.0, 36.5, 36.3, 36.5, 36.6, 35.9, 36.3, 36.6, 36.4, 36.5, 36.8, 36.4, 36.7, 36.9, 37.1, 37.0],
-                    borderColor: '#CFD8DC',
+                    borderColor: '#FF7777',
                     fill: false,
                     type: 'line',
                     lineTension: 0,

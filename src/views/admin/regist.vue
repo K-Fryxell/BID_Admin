@@ -285,8 +285,8 @@
             statusDecision(){
                 this.consciousnessLevel = "0"
                 this.bodyTemperature = Math.round((Math.random()*3+35.5)*10)/10
-                this.bloodPressureMax = Math.floor(Math.random()*20)+155
-                this.bloodPressureMin = Math.floor(Math.random()*20)+110
+                this.bloodPressureMax = Math.floor(Math.random()*20)+120
+                this.bloodPressureMin = Math.floor(Math.random()*10)+85
                 this.heartRate = Math.floor(Math.random()*30)+70
                 this.dopamine = Math.floor(Math.random()*40)+80
                 this.serotonin = Math.floor(Math.random()*40)+80

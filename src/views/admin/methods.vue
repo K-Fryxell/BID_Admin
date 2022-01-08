@@ -1,21 +1,16 @@
 <template>
     <div>
-        <h1>メソッド検証ページ</h1>
-        <v-btn @click="updateHeartRateDB">更新(onUpdate発火)</v-btn>
-        <p>{{ username }}</p>
+        <v-btn @click="addVitalLog">vitalLog挿入(通知送信)</v-btn>
+        <v-btn @click="addCrimeVitalLog">crimeVitalLog挿入(警察に通報と通知)</v-btn>
     </div>
 </template>
 
 <script>
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { getDatabase, ref, child, get, update } from "firebase/database"
+import { getDatabase, ref, child, get, set } from "firebase/database"
 //import * as functions from 'firebase-functions'
 
 export default {
-    name: 'Home',
-    components: {
-    
-    },
     data () {
         return {
             username:"",
@@ -41,24 +36,26 @@ export default {
                 }
             })
         },
-        updateHeartRateDB(){
+        addVitalLog(){
             onAuthStateChanged(getAuth(), (user) => {
                 if (user) {
+                    // User logged in already or has just logged in.
+                    // ユーザーIDの取得
                     const db = getDatabase()
-                    //更新内容を設定
-                    const postData = {
-                        heart_rate: this.heartRate,
-                        uid: user.uid,
-                        email: this.$store.getters.user
-                    }
-                    //更新テーブルの決定(複数可)
-                    const updates = {}
-                    updates['/monitor/'] = postData
-                    //設定した内容でアップデート
-                    update(ref(db), updates).then(() => {
-                        console.log('update success')
-                    }).catch((error) => {
-                        console.log('update failed\n' + error)
+                    set(ref(db, 'users/' + user.uid + '/vitalLog'), {
+                        flg: 1
+                    })
+                }
+            })
+        },
+        addCrimeVitalLog(){
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    // ユーザーIDの取得
+                    const db = getDatabase()
+                    set(ref(db, 'users/' + user.uid + '/crimeVitalLog'), {
+                        flg: 1
                     })
                 }
             })
