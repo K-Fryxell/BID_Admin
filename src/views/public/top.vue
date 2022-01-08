@@ -218,6 +218,7 @@ export default {
             bloodPressureMax: Number,
             bloodPressureMin: Number,
             flg: 0,
+            flg1: 0,
             vitalLogModal: false,
             crimeVitalLogModal:false
         }
@@ -292,6 +293,13 @@ export default {
                     }).catch((error) => {
                         console.error(error)
                     })
+                    get(child(dbRef, `users/${user.uid}/crimeVitalLog`)).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            this.flg1 = snapshot.val().flg1
+                        }
+                    }).catch((error) => {
+                        console.error(error)
+                    })
                     get(child(dbRef, `monitor`)).then((snapshot) => {
                     if (snapshot.exists()) {
                         this.heartRate = snapshot.val().heart_rate
@@ -302,6 +310,7 @@ export default {
                     }).catch((error) => {
                         console.error(error)
                     })
+                    console.log(this.flg1)
                 }
             })
         },
@@ -313,6 +322,14 @@ export default {
         this.bloodPressureMin  = this.getUsersDB()
     },
     watch:{
+        flg1:function(){
+            if(this.flg1 == 1){
+                this.crimeVitalLogModal = true
+            }
+            else{
+                this.crimeVitalLogModal = false
+            }
+        }
     },
     mounted(){
         this.console()

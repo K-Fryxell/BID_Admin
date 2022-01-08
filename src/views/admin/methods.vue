@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-btn @click="addVitalLog">vitalLog挿入(通知送信)</v-btn>
-        <v-btn @click="addVitalLog">crimeVitalLog挿入(警察に通報と通知)</v-btn>
+        <v-btn @click="addCrimeVitalLog">crimeVitalLog挿入(警察に通報と通知)</v-btn>
     </div>
 </template>
 

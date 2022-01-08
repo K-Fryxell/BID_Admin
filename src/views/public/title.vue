@@ -1,6 +1,6 @@
 <template>
     <v-main class="ma-0 pa-0" style="background:radial-gradient(#fff,#707070); height:100%">
-        <v-row class="ma-0 pa-0" justify="center" @click="toTop">
+        <v-row class="ma-0 pa-0" justify="center" @click="login">
             <img width="18%" src="@/assets/logo1.png" style="margin: 50vh auto 0; transform: translateY(-50%);">
         </v-row>
         <!-- 不審者発見モーダル -->
@@ -27,13 +27,15 @@
 </template>
 <script>
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
+import { getDatabase, ref, child, get } from "firebase/database"
 export default {
     data() {
         return {
             crimeVitalLogModal:false,
             mailaddress: "sample@hal.ac.jp",
             password: "password",
-            isLoggedIn: false
+            isLoggedIn: false,
+            flg1: 0
         }
     },
     methods: {
@@ -42,6 +44,14 @@ export default {
                 // Signed in
                 onAuthStateChanged(getAuth(), user=> {
                     if(user) {
+                        const dbRef = ref(getDatabase())
+                        get(child(dbRef, `users/${user.uid}/crimeVitalLog`)).then((snapshot) => {
+                            if (snapshot.exists()) {
+                                this.flg1 = snapshot.val().flg1
+                            }
+                        }).catch((error) => {
+                            console.error(error)
+                        })
                         console.log(user.email)
                         this.$store.commit("onAuthStateChanged", user.email)
                     }
@@ -55,6 +65,16 @@ export default {
                 const errorMessage = error.message
                 alert("失敗", errorCode, errorMessage)
             })
+        }
+    },
+    watch:{
+        flg1:function(){
+            if(this.flg1 == 1){
+                this.crimeVitalLogModal = true
+            }
+            else{
+                this.crimeVitalLogModal = false
+            }
         }
     },
     created() {
