@@ -24,8 +24,11 @@
                                                 </v-card-text>
                                             </v-col>
                                             <v-col class="ma-0 pa-0" cols="3" style="background-color:#fff; border-style: solid;border-color: #707070 #707070 #707070 #707070;border-width: 3px 3px 3px 0px;">
-                                                <v-card-text class="mt-4 text-lg-h5 text-center">
+                                                <v-card-text v-if="flg==0" class="mt-4 text-lg-h5 text-center">
                                                     <span style="color:#11FF00">{{heartRate}}</span>
+                                                </v-card-text>
+                                                <v-card-text v-if="flg==1" class="mt-4 text-lg-h5 text-center">
+                                                    <span style="color:red">{{heartRate}}</span>
                                                 </v-card-text>
                                             </v-col>
                                         </v-row>
@@ -126,8 +129,11 @@
                             <v-row class="ma-0 pa-0" justify="center">
                                 <v-col class="ma-0 pa-0" cols="4">
                                     <v-card-text class="ma-0 pa-0 text-center">心拍数(bpm)</v-card-text>
-                                    <v-card-text class="ma-0 pa-0 text-center">
+                                    <v-card-text v-if="flg==0" class="ma-0 pa-0 text-center">
                                         <span style="color:#11FF00">{{heartRate}}</span>
+                                    </v-card-text>
+                                    <v-card-text v-if="flg==1" class="ma-0 pa-0 text-center">
+                                        <span style="color:red">{{heartRate}}</span>
                                     </v-card-text>
                                 </v-col>
                                 <v-col class="ma-0 pa-0" cols="4">

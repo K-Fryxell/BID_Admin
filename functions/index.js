@@ -6,7 +6,7 @@ admin.initializeApp(functions.config().firebase)
 
 const pushMessageVitalLog = (fcmToken) => ({
     notification: {
-        title: '【BID通知システム】',
+        title: '【BID】',
         body: '１件の異常を発見しました',
     },
     data: {
@@ -17,7 +17,7 @@ const pushMessageVitalLog = (fcmToken) => ({
 
 const pushMessageCrimeVitalLog = (fcmToken) => ({
     notification: {
-        title: '【BID通知システム】',
+        title: '【BID】',
         body: '近くに不審者が出現しました',
     },
     data: {
@@ -27,15 +27,26 @@ const pushMessageCrimeVitalLog = (fcmToken) => ({
 })
 
 exports.sendMentionVitalLog = functions.database.ref('/users/{uid}/vitalLog').onWrite(() => {
-    const token = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
-    admin.messaging().send(pushMessageVitalLog(token, "１件の異常を発見しました"))
-        .then((response) => { console.log('Successfully sent message:', response) })
-        .catch((e) => { console.log('Error sending message:', e) })
+    const token1 = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
+    const token2 = "fiv67kWXSceP7YyTgGJvzb:APA91bHOkGrGaGcqaEmjeFiAqE_A_IZg-2e1d9vf5j6aNBEFvTUwGer1gGNUZUc917fJsu3h40K-tyJvtqIYIc3pfficbKsa_Dt0o6usTiYQt5JAKjJkalrFe3A_A71PcQIY08haxlY6"
+    const token3 = "dADy7mZXTf6gTsqlf9G1Ex:APA91bHwDDZ5r6kHcAuIJXFbSI7jcWsJzQQyze-h4w9g-abKA7CIFXxPyhW5jLJGqdTaVR_wHPjlVP1WiJ9AVgVk6GkCahF6LVpFILssI4c1NANaxpvptiqCFlzzjQSc7xdf2xapN6NQ"
+    admin.messaging().send(pushMessageVitalLog(token1, "１件の異常を発見しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
+    admin.messaging().send(pushMessageVitalLog(token2, "１件の異常を発見しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
+    admin.messaging().send(pushMessageVitalLog(token3, "１件の異常を発見しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })      
 })
 
 exports.sendMentionCrimeVitalLog = functions.database.ref('/users/{uid}/crimeVitalLog').onWrite((snapshot, context) => {
-    const token = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
-    admin.messaging().send(pushMessageCrimeVitalLog(token, "１件の異常を発見しました")).then((response) => {
+    const token1 = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
+    const token2 = "fiv67kWXSceP7YyTgGJvzb:APA91bHOkGrGaGcqaEmjeFiAqE_A_IZg-2e1d9vf5j6aNBEFvTUwGer1gGNUZUc917fJsu3h40K-tyJvtqIYIc3pfficbKsa_Dt0o6usTiYQt5JAKjJkalrFe3A_A71PcQIY08haxlY6"
+    const token3 = "dADy7mZXTf6gTsqlf9G1Ex:APA91bHwDDZ5r6kHcAuIJXFbSI7jcWsJzQQyze-h4w9g-abKA7CIFXxPyhW5jLJGqdTaVR_wHPjlVP1WiJ9AVgVk6GkCahF6LVpFILssI4c1NANaxpvptiqCFlzzjQSc7xdf2xapN6NQ"
+    admin.messaging().send(pushMessageCrimeVitalLog(token1, "近くに不審者が出現しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
+    admin.messaging().send(pushMessageCrimeVitalLog(token2, "近くに不審者が出現しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
+    admin.messaging().send(pushMessageCrimeVitalLog(token3, "近くに不審者が出現しました")).then((response) => {
         console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
     
     functions.logger.log(snapshot)
@@ -76,7 +87,7 @@ exports.sendMentionCrimeVitalLog = functions.database.ref('/users/{uid}/crimeVit
     const mailOptions = {
         from: from,
         to: to,
-        subject: "【BID緊急通知システム】緊急通報",
+        subject: "【BID】緊急通報",
         html: msgTemplate,
     }
     // Getting results
@@ -134,7 +145,7 @@ exports.sendMail = functions.database.ref('/monitor').onWrite((snapshot, context
         const mailOptions = {
             from: from,
             to: to,
-            subject: "【BID緊急通知システム】救急要請",
+            subject: "【BID】救急要請",
             html: msgTemplate,
         }
 
