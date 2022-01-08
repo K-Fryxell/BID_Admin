@@ -1,6 +1,7 @@
 <template>
     <div>
         <v-btn @click="addVitalLog">vitalLog挿入(通知送信)</v-btn>
+        <v-btn @click="addVitalLog">crimeVitalLog挿入(警察に通報と通知)</v-btn>
     </div>
 </template>
 
@@ -42,6 +43,18 @@ export default {
                     // ユーザーIDの取得
                     const db = getDatabase()
                     set(ref(db, 'users/' + user.uid + '/vitalLog'), {
+                        flg: 1
+                    })
+                }
+            })
+        },
+        addCrimeVitalLog(){
+            onAuthStateChanged(getAuth(), (user) => {
+                if (user) {
+                    // User logged in already or has just logged in.
+                    // ユーザーIDの取得
+                    const db = getDatabase()
+                    set(ref(db, 'users/' + user.uid + '/crimeVitalLog'), {
                         flg: 1
                     })
                 }
