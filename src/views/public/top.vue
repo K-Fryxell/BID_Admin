@@ -316,10 +316,15 @@ export default {
                     }).catch((error) => {
                         console.error(error)
                     })
-                    console.log(this.flg1)
                 }
             })
         },
+        mount(){
+            ref('monitor', function(snapshot) {
+                snapshot.val().prependTo('#{heart_rate}')
+                console.log(snapshot.val())
+            })
+        }
     },
     async created(){
         this.heartRate = this.getUsersDB(),
@@ -339,6 +344,7 @@ export default {
     },
     mounted(){
         this.console()
+        this.mount()
     }
 }
 </script>

@@ -30,23 +30,29 @@ exports.sendMentionVitalLog = functions.database.ref('/users/{uid}/vitalLog').on
     const token1 = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
     const token2 = "fiv67kWXSceP7YyTgGJvzb:APA91bHOkGrGaGcqaEmjeFiAqE_A_IZg-2e1d9vf5j6aNBEFvTUwGer1gGNUZUc917fJsu3h40K-tyJvtqIYIc3pfficbKsa_Dt0o6usTiYQt5JAKjJkalrFe3A_A71PcQIY08haxlY6"
     const token3 = "dADy7mZXTf6gTsqlf9G1Ex:APA91bHwDDZ5r6kHcAuIJXFbSI7jcWsJzQQyze-h4w9g-abKA7CIFXxPyhW5jLJGqdTaVR_wHPjlVP1WiJ9AVgVk6GkCahF6LVpFILssI4c1NANaxpvptiqCFlzzjQSc7xdf2xapN6NQ"
+    const token4 = "dBmZuAeRQoet0m9htvHwHh:APA91bFiGpOQgbZl7qIWBQPHoNVmcRL-j9gZHZJTzicIy5SqHBoCZCTedFEFMe_Ri4T_V6DRWkh1pD2OOdZCey8nLajW7bv7hs9wAeiHz9Ha0JOuEbQZ6d_XvcG_6ceHFijRUKT8fOr0"
     admin.messaging().send(pushMessageVitalLog(token1, "１件の異常を発見しました")).then((response) => {
         console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
     admin.messaging().send(pushMessageVitalLog(token2, "１件の異常を発見しました")).then((response) => {
         console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
     admin.messaging().send(pushMessageVitalLog(token3, "１件の異常を発見しました")).then((response) => {
-        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })      
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })  
+    admin.messaging().send(pushMessageVitalLog(token4, "１件の異常を発見しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
 })
 
 exports.sendMentionCrimeVitalLog = functions.database.ref('/users/{uid}/crimeVitalLog').onWrite((snapshot, context) => {
     const token1 = "dc2IY56LQhOZYW4dfNUWTi:APA91bFRL-ZvuDntoWJDPTBSZ58GCG-weQUpsntFItbWzTUPkKK8cV8b-G2DNI4CoYhwaCv4P6aEv5tcBXEztFUGD1n3EsdW_kTTGqQ00MHnYLgFGj8z78mto-Usn7T1tBGL0OPRsy4O"
     const token2 = "fiv67kWXSceP7YyTgGJvzb:APA91bHOkGrGaGcqaEmjeFiAqE_A_IZg-2e1d9vf5j6aNBEFvTUwGer1gGNUZUc917fJsu3h40K-tyJvtqIYIc3pfficbKsa_Dt0o6usTiYQt5JAKjJkalrFe3A_A71PcQIY08haxlY6"
     const token3 = "dADy7mZXTf6gTsqlf9G1Ex:APA91bHwDDZ5r6kHcAuIJXFbSI7jcWsJzQQyze-h4w9g-abKA7CIFXxPyhW5jLJGqdTaVR_wHPjlVP1WiJ9AVgVk6GkCahF6LVpFILssI4c1NANaxpvptiqCFlzzjQSc7xdf2xapN6NQ"
+    const token4 = "dBmZuAeRQoet0m9htvHwHh:APA91bFiGpOQgbZl7qIWBQPHoNVmcRL-j9gZHZJTzicIy5SqHBoCZCTedFEFMe_Ri4T_V6DRWkh1pD2OOdZCey8nLajW7bv7hs9wAeiHz9Ha0JOuEbQZ6d_XvcG_6ceHFijRUKT8fOr0"
     admin.messaging().send(pushMessageCrimeVitalLog(token1, "近くに不審者が出現しました")).then((response) => {
         console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
     admin.messaging().send(pushMessageCrimeVitalLog(token2, "近くに不審者が出現しました")).then((response) => {
         console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
     admin.messaging().send(pushMessageCrimeVitalLog(token3, "近くに不審者が出現しました")).then((response) => {
+        console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
+    admin.messaging().send(pushMessageCrimeVitalLog(token4, "近くに不審者が出現しました")).then((response) => {
         console.log('Successfully sent message:', response) }).catch((e) => { console.log('Error sending message:', e) })
     
     functions.logger.log(snapshot)
