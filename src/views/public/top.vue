@@ -301,7 +301,7 @@ export default {
                     })
                     get(child(dbRef, `users/${user.uid}/crimeVitalLog`)).then((snapshot) => {
                         if (snapshot.exists()) {
-                            this.flg1 = snapshot.val().flg1
+                            this.flg1 = snapshot.val().flg
                         }
                     }).catch((error) => {
                         console.error(error)
