@@ -7,8 +7,6 @@ node_modules
 .env.local
 .env.*.local
 .env
-/functions/.runtimeconfig.json
-/functions/index.js
 
 # Log files
 npm-debug.log*
